@@ -1,0 +1,2 @@
+module Movies::CastsHelper
+end

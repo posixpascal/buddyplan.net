@@ -1,0 +1,12 @@
+<h4><%= @movie.title %></h4>
+<div class="list-group">
+  <%= link_to with_icon("users", "Actors"), movie_actors_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/actors"}" %>
+  <%= link_to with_icon("map-pin", "Locations"), movie_locations_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/locations"}" %>
+  <%= link_to with_icon("camera", "Scenes"), movie_scenes_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/scenes"}" %>
+  <%= link_to with_icon("columns", "Roles & Casts"), movie_roles_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/roles"}" %>
+  <%= link_to with_icon("edit", "Inventory"), movie_inventories_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/inventories"}" %>
+ <!-- <%= link_to with_icon("eur", "Budget"), movie_budget_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/budgets"}" %>
+  <%= link_to with_icon("file", "Documents"), movie_documents_path(@movie), class: "list-group-item list-group-item-action #{ 'active' if params[:controller] == "movies/documents"}" %>-->
+  <%= link_to with_icon("car", "Cars"), movie_cars_path(@movie), class: "list-group-item list-group-item-action #{ 'active' if params[:controller] == "movies/cars"}" %>
+  <%= link_to with_icon("calendar", "Schedule"), movie_schedule_path(@movie), class: "list-group-item list-group-item-action #{'active' if params[:controller] == "movies/schedule"}" %>
+</div>

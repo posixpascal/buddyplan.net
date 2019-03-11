@@ -1,0 +1,45 @@
+<%= content_for :breadcrumbs do
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_roles_path(@movie), "Roles"]])
+end
+%>
+<%= content_for :title do %>
+  Roles
+<% end %>
+
+
+<% if @roles.size == 0 %>
+  <%= empty_resource Role, cta: new_movie_role_path %>
+<% end %>
+
+<% if @roles.size %>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @roles.each do |role| %>
+      <tr>
+        <td><%= role.name %></td>
+        <td><%= link_to 'Show', movie_role_path(@movie, role) %></td>
+        <td><%= link_to 'Edit', edit_movie_role_path(@movie, role) %></td>
+        <td><%= link_to 'Destroy', movie_role_path(@movie, role), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<div class="content-wrapper-footer">
+  <%= link_to "Create", new_movie_role_path(@movie), class: "btn btn-xs btn-primary" %>
+</div>
+
+
+<%= content_for :another_card do %>
+  <div class=" content-wrapper">
+    <div class="content-wrapper-title">Cast</div>
+    hi
+  </div>
+<% end %>

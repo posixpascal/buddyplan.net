@@ -1,0 +1,34 @@
+<%= content_for :breadcrumbs do
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_inventories_path(@movie), "Inventories"], [movie_inventory_path(@movie, @inventory), @inventory.name]])
+end
+%>
+<%= content_for :title do %>
+  <%= @inventory.name %>
+<% end %>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th><i class="fa fa-check-circle-o"></i></th>
+    <th>Name</th>
+    <th>Description</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @inventory.items.each do |item| %>
+    <tr>
+      <td>checkbox</td>
+      <td><%= item.name %></td>
+      <td><%= item.description %></td>
+      <td><%= link_to 'Show', movie_inventory_item_path(@movie, item) %></td>
+      <td><%= link_to 'Edit', edit_movie_inventory_item_path(@movie, item) %></td>
+      <td><%= link_to 'Destroy', movie_inventory_item_path(@movie, item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="content-wrapper-footer">
+  <%= link_to "Add Item", new_movie_inventory_item_path(@movie, @inventory), class: "btn btn-xs btn-primary" %>
+</div>

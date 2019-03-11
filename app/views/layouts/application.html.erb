@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShootingSchedule</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<%= render partial: "partials/navigation" %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="pt-5 sidebar">
+        <%= render partial: "partials/sidebar", movie: @movie %>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="pt-5">
+        <%= content_for :breadcrumbs %>
+        <div class=" content-wrapper">
+          <div class="content-wrapper-title"><%= content_for :title %></div>
+          <%= yield %>
+        </div>
+        <br><br>
+        <%= content_for :another_card %>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

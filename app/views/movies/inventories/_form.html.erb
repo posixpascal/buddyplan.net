@@ -1,0 +1,36 @@
+<%= form_for [@movie, @inventory] do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :inventory_type %><br>
+        <%= form.select :inventory_type,
+                        Inventory.inventory_types.keys.map { |k| [k.titleize, k] },
+                        { include_blank: true },
+                        { class: 'chosen-select' }
+        %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrapper-footer">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

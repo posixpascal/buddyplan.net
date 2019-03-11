@@ -1,0 +1,2 @@
+module Movies::PeopleHelper
+end

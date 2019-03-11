@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= form.label :scheduled_on %>
+      <%= form.datetime_field :scheduled_on, class: "flatpicker-time form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <%= form.label :estimate %>
+      <%= form.text_field :estimate, class: "form-control" %>
+    </div>
+  </div>
+</div>
+<hr>
+<h5>Participants</h5>
+<p>Select actors who will participate in this event. You can optionally define roles for each individual.</p>
+<br>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th><input type="checkbox" onclick="highlightActors()"></th>
+    <th>Actor</th>
+    <th>Role</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @movie.actors.each do |actor| %>
+    <tr>
+      <td>
+        <input type="checkbox" name="actor_<%= actor.id %>">
+      </td>
+      <td>
+        <%= actor.firstname %> <%= actor.lastname %>
+      </td>
+      <td>
+          <select class="chosen-select" name="actor_role_<%= actor.id %>">
+            <option value="0" disabled selected>---------------------------</option>
+            <% @movie.roles.map do |u| %>
+            <option <%= 'selected' if @schedule_event.event_participants.where(actor_id: actor.id, role_id: u.id).count > 0 %> value="<%= u.id %>"><%= u.name %></option>
+            <% end %>
+          </select>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  window.highlightActors = function(){
+      if ($(this).is("checked")) {
+          $("[name^='actor_']:checked").click();
+      }
+      $("[name^='actor_']").click();
+  }
+  var actorsParticipating = [<%= @schedule_event.event_participants.map(&:actor_id).join(",") %>];
+  actorsParticipating.forEach(function(actorId){
+     $("[name='actor_" + actorId +"']").click();
+  });
+</script>

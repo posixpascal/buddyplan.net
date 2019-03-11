@@ -1,0 +1,2 @@
+module Movies::InventoriesHelper
+end

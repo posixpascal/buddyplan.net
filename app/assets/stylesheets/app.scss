@@ -1,0 +1,79 @@
+body {
+  background:#e3e8ee;
+}
+
+.lead-icon {
+  position: absolute;
+  opacity: 0.05;
+  font-size: 96px !important;
+}
+.content-wrapper {
+  background: #f7fafc;
+  box-shadow: 3px 3px 15px rgba(0,0,0,.2);
+  border-radius: 2px;
+  padding: 20px;
+}
+
+hr {
+  margin: 20px -20px;
+}
+
+.content-wrapper-title, .content-wrapper-footer {
+  background: #fff;
+  height: 60px;
+  margin: -20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  align-items: center;
+  font-size: 18px;
+}
+
+.content-wrapper-footer {
+  margin-top: 0;
+  margin-bottom: -20px;
+  border-bottom: 0;
+  border-top: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+}
+
+.scheduled-events-empty {
+  text-align: center;
+  color: #c5dbef;
+  padding: 40px;
+}
+
+.scheduled-events {
+  margin: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 15px rgba(0,0,0,.1);
+  padding: 15px;
+}
+
+.scheduled-day {
+
+}
+.sidebar h4 {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #999;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(255,255,255,.3);
+}
+.sidebar .list-group-item {
+  background: none;
+  border:none;
+}
+
+.sidebar .list-group-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar .list-group-item.active {
+  color: #007bff;
+  text-shadow: 1px 1px 0 rgba(255,255,255,.8);
+}

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  schedule: one
+  schedule_event: one
+  actor: one
+  role: one
+
+two:
+  schedule: two
+  schedule_event: two
+  actor: two
+  role: two

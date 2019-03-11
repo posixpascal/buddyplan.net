@@ -1,0 +1,7 @@
+<%= content_for :breadcrumbs do
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_actors_path(@movie), "Actors"], [movie_actor_path(@movie, @actor), "#{@actor.firstname} #{@actor.lastname}"]])
+end
+%>
+<%= content_for :title do %>
+  <%= @actor.firstname %> <%= @actor.lastname %>
+<% end %>

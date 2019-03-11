@@ -1,0 +1,2 @@
+module Movies::LocationsHelper
+end

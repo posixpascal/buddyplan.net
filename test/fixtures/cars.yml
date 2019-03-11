@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  actor: one
+  vendor: MyString
+  license_plate: MyString
+  fuel: 1
+  available_seats: 1
+
+two:
+  actor: two
+  vendor: MyString
+  license_plate: MyString
+  fuel: 1
+  available_seats: 1

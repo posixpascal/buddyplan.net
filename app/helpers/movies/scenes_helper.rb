@@ -1,0 +1,2 @@
+module Movies::ScenesHelper
+end

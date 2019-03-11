@@ -1,0 +1,62 @@
+<%= form_for [@movie, @car] do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :vendor %>
+        <%= form.text_field :vendor, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :available_seats %>
+        <%= form.text_field :available_seats, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :license_plate %>
+        <br>
+        <%= form.text_field :license_plate, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :fuel %>
+        <%= form.text_field :fuel, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :actor_id %>
+        <br>
+        <%= form.select :actor_id,
+                        @movie.actors.all.map {|u| [u.firstname, u.id]},
+                        {include_blank: true},
+                        {class: 'chosen-select'}
+        %>
+      </div>
+    </div>
+  </div>
+
+    <div class="content-wrapper-footer">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+<% end %>

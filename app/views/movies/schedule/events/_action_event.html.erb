@@ -1,0 +1,22 @@
+<%= form_for [@movie, @schedule, @schedule_event, @event] do |form| %>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :action_type %>
+        <%= form.text_field :action_type, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :notes %>
+        <%= form.text_area :notes, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: "movies/schedule/events/shared", locals: { form: form } %>
+
+  <div class="content-wrapper-footer">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

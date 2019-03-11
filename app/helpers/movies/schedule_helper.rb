@@ -1,0 +1,2 @@
+module Movies::ScheduleHelper
+end

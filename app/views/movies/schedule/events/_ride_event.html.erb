@@ -1,0 +1,42 @@
+<%= form_for [@movie, @schedule, @schedule_event, @event] do |form| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :location %><br>
+        <%= form.select :location_id,
+                     @movie.locations.all.map { |u| [u.name, u.id] },
+                     { include_blank: true },
+                     { class: 'chosen-select' }
+        %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :car %><br>
+        <%= form.select :car_id,
+                        @movie.cars.map { |u| [u.readable_name, u.id] },
+                        { include_blank: true },
+                        { class: 'chosen-select' }
+        %>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: "movies/schedule/events/shared", locals: { form: form } %>
+
+  <div class="content-wrapper-footer">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

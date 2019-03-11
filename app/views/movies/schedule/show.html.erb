@@ -1,0 +1,12 @@
+<%= content_for :breadcrumbs do
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_schedule_path(@movie, @schedule), "Schedule"]])
+end
+%>
+
+<%= content_for :title do %>
+  Schedule
+  <div></div>
+<% end %>
+
+<%= render partial: "form", movie: @movie, schedule: @schedule %>
+

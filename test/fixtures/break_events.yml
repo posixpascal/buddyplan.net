@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  schedule: one
+  schedule_event: one
+  location: one
+  with_food: false
+
+two:
+  schedule: two
+  schedule_event: two
+  location: two
+  with_food: false

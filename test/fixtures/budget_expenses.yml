@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  budget: one
+  amount: 1
+  reasoning: MyText
+  status: 1
+
+two:
+  budget: two
+  amount: 1
+  reasoning: MyText
+  status: 1

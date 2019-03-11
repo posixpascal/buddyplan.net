@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  name: MyString
+  description: MyString
+  duration: 1
+  order: 1
+  inventory: one
+
+two:
+  movie: two
+  name: MyString
+  description: MyString
+  duration: 1
+  order: 1
+  inventory: two

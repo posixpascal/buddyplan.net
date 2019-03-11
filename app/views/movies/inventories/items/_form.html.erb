@@ -1,0 +1,49 @@
+
+<%= form_for [@movie, @inventory, @item] do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <% if @inventory.cars? %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= form.label "license_plate" %>
+          <input type="text" class="form-control" name="inventory[data][license_plate]">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= form.label :car_owner_id %><br>
+          <%= form.select :car_owner_id,
+                            @movie.actors.all.map { |u| [u.firstname, u.id] },
+                            { include_blank: true },
+                            { class: 'chosen-select' }
+            %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class="content-wrapper-footer">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
