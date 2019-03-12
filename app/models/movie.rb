@@ -9,4 +9,9 @@ class Movie < ApplicationRecord
   has_many :cars
 
   has_one :schedule
+
+
+  def schedule_for(actor)
+    ActorSchedulePdfJob.perform(self.id, actor.id)
+  end
 end

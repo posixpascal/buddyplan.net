@@ -1,6 +1,11 @@
 class Movies::ScheduleController < ApplicationController
   before_action :set_movie
   before_action :set_schedule
+  layout "pdf", only: :for_actor
+
+  def for_actor
+    @actor = @movie.actors.find(params[:actor_id])
+  end
 
   def edit
   end

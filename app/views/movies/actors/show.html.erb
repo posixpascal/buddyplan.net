@@ -5,3 +5,21 @@ end
 <%= content_for :title do %>
   <%= @actor.firstname %> <%= @actor.lastname %>
 <% end %>
+
+<div class="tab-bar">
+  <div class="tab tab-active">
+    Schedule
+  </div>
+  <div class="tab">
+    Contact
+  </div>
+  <div class="tab">
+    Invite
+  </div>
+</div>
+
+<div class="tab-content">
+  <div>
+    <%= render partial: "schedule", locals: { actor: @actor } %>
+  </div>
+</div>

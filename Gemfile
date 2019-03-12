@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.2'
 gem "sqlite3", "~> 1.3.6"
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'prawn'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

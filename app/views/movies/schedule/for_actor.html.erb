@@ -1,0 +1,134 @@
+<p><%= @movie.title %> is scheduled between <strong><%= @movie.schedule.scheduled_from.strftime("%d.%m.%Y") %></strong>
+  and <strong><%= @movie.schedule.scheduled_to.strftime("%d.%m.%Y") %></strong>.</p>
+
+<h3>The Timetable</h3>
+<p>All information for you is emphasized.</p>
+
+<% @movie.schedule.schedule_days.each do |date| %>
+  <h4><%= date.strftime("%d.%m.%Y") %></h4>
+  <table class="table table-bordered schedule-table">
+    <tbody>
+    <% @movie.schedule.events_at(date).each do |event|
+      next if event.schedulable_id.nil?
+      @event = event
+%>
+      <tr class="<%= 'relevant' if event.relevant_for? @actor %>">
+        <td width="10">
+          <%= event.schedulable.scheduled_on&.strftime("%H:%M") %>
+        </td>
+        <% if event.schedulable.is_a? RideEvent %>
+          <td width="10" valign="middle" align="center">
+            <i class="fa fa-car"></i>
+          </td>
+          <td>[last location or startpoint]</td>
+          <td>
+            <%= event.schedulable.location.name %>
+            <br>
+            <a href="">Google Maps</a>
+          </td>
+          <td width="20">
+            <% event.event_participants.each do |ep| %>
+              <div class="<%= 'emphasized' if ep.actor.id == @actor.id %>">
+                <%= ep.actor.firstname %> <%= ep.actor.lastname %>
+                <% if ep.role&.name&.downcase == "driver" %>
+                  <span class="badge badge-primary"><i class="fa fa-car"></i> Driver</span>
+                <% end %>
+                <% if ep.role&.name&.downcase == "passenger" %>
+                  <span class="badge badge-danger"><i class="fa fa-car"></i> Passenger</span>
+                <% end %>
+              </div><br>
+            <% end %>
+          </td>
+          <td width="10"><i class="fa fa-hourglass-1"></i> <%= event.schedulable.estimate %>min</td>
+        <% end %>
+
+        <% if event.schedulable.is_a? ActionEvent %>
+          <td width="10" valign="middle" align="center">
+            <i class="fa fa-asterisk"></i>
+          </td>
+          <td width="33"><%= event.schedulable.action_type %></td>
+          <td width="33"><code><%= event.schedulable.notes %></code></td>
+          <td width="20">
+            <% event.event_participants.each do |ep| %>
+              <div class="<%= 'emphasized' if ep.actor.id == @actor.id %>">
+                <%= ep.actor.firstname %> <%= ep.actor.lastname %>
+                <% if ep.role&.name&.downcase == "driver" %>
+                  <span class="badge badge-primary"><i class="fa fa-car"></i> Driver</span>
+                <% end %>
+                <% if ep.role&.name&.downcase == "passenger" %>
+                  <span class="badge badge-danger"><i class="fa fa-car"></i> Passenger</span>
+                <% end %>
+              </div><br>
+            <% end %>
+          </td>
+          <td width="10"><i class="fa fa-hourglass-1"></i> <%= event.schedulable.estimate %>min</td>
+        <% end %>
+
+        <% if event.schedulable.is_a? BreakEvent %>
+          <td width="10" valign="middle" align="center">
+            <i class="fa fa-clock-o"></i>
+          </td>
+          <td><%= event.schedulable.location&.name %></td>
+          <td>
+           <label class="badge badge-<%= 'info' if event.schedulable.with_food %>">
+             <% if event.schedulable.with_food %>Mit Essen<% else %>Ohne Essen<% end %>
+           </label>
+          </td>
+          <td>
+           -
+          </td>
+          <td width="10"><i class="fa fa-hourglass-1"></i> <%= event.schedulable.estimate %>min</td>
+        <% end %>
+
+        <% if event.schedulable.is_a? ShootEvent %>
+          <td width="10" valign="middle" align="center">
+            <i class="fa fa-camera"></i>
+          </td>
+          <td><%= event.schedulable.scene.name %></td>
+          <td>
+            <%= event.schedulable.location&.name %>
+            <br>
+            <a href="">Google Maps</a>
+          </td>
+          <td width="20">
+            <% event.event_participants.each do |ep| %>
+              <div class="<%= 'emphasized' if ep.actor.id == @actor.id %>">
+                <%= ep.actor.firstname %> <%= ep.actor.lastname %>
+
+                  <span class="badge badge-success"><%= ep.role&.name %></span>
+
+              </div><br>
+            <% end %>
+          </td>
+          <td width="10"><i class="fa fa-hourglass-1"></i> <%= event.schedulable.estimate %>min</td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<hr>
+<h4>Contacts</h4>
+<p>If you find yourself lost on set or in general — one of these numbers might help you.</p>
+
+<% @movie.actors.all.in_groups_of(3).each do |group| %>
+  <div class="row mb-5">
+    <% group.each do |actor|
+      next unless actor
+    %>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= actor.firstname %> <%= actor.lastname %></h5>
+            <hr>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<hr>
+
+made with &hearts; and <%= image_tag "logo_black.svg", height: 12, style: "position: relative;top:-2px" %> by <a class="badge badge-primary">#buddythedog</a>

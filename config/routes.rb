@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resource :budget
 
     resource :schedule, controller: "movies/schedule" do
+      get "/actor/:actor_id", to: "movies/schedule#for_actor"
       get "/events/:event/:day", to: "movies/schedule/events#create", as: "schedule_event"
     end
 

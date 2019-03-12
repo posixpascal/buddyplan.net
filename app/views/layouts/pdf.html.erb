@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ShootingSchedule</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<%= render partial: "partials/navigation_slim" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="pt-5">
+        <%= content_for :breadcrumbs %>
+        <div class=" content-wrapper">
+          <div class="content-wrapper-title"><div>Schedule for <strong><%= @movie.title %></strong></div></div>
+          <%= yield %>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

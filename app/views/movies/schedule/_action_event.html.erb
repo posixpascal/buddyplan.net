@@ -10,6 +10,7 @@
 
       <% if @event.event_participants.count %>
         <i class="fa fa-fw fa-users"></i> <%= @event.event_participants.count %>
+        <%= participants @event.event_participants %>
         <br><br>
       <% end %>
 
