@@ -2,7 +2,7 @@
   <div class="container">
     <a class="navbar-brand" href="<%= root_path %>">
       <%= image_tag "logo.svg", class: "logo" %>
-      buddyplan.io
+      buddyplan.net
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,18 +22,29 @@
       </div>
 
       <ul class="navbar-nav ml-lg-auto">
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="<%= movies_path %>">
-            <i class="ni ni-favourite-28"></i>
-            <span class="nav-link-inner--text">Movies</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" href="#" role="button">
-            <i class="ni ni-settings-gear-65"></i>
-            <span class="nav-link-inner--text">Login</span>
-          </a>
-        </li>
+        <% if current_user %>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= movies_path %>">
+              <i class="ni ni-favourite-28"></i>
+              <span class="nav-link-inner--text">Movies</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="#" role="button">
+              <i class="ni ni-settings-gear-65"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= new_user_session_path %>" role="button">
+              <i class="ni ni-settings-gear-65"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+        <% end %>
+
       </ul>
     </div>
   </div>

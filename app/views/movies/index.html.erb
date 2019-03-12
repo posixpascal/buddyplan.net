@@ -1,21 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Movies</h1>
-
+<%= content_for :title do %>
+  Movies
+<% end %>
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
+      <th>Project Name</th>
+      <th>Actors</th>
+      <th>Duration</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @movies.each do |movie| %>
+    <% Movie.with_role(:moderate, current_user).each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
-        <td><%= movie.description %></td>
+        <td><i class="fa fa-users fa-fw"></i> <%= movie.actors.size %></td>
+        <td><i class="fa fa-calendar fa-fw"></i> <%= movie.schedule&.scheduled_from&.strftime("%d.%m") %> - <%= movie.schedule&.scheduled_to&.strftime("%d.%m.%Y") %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>

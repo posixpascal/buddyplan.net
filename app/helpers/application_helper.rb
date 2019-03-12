@@ -21,6 +21,14 @@ module ApplicationHelper
     </div>"
   end
 
+  def bootstrap_class_for_flash(key)
+    {
+        :error => "danger",
+        :success => "success",
+        :notice => "info"
+    }[key.to_sym] || "primary"
+  end
+
   def breadcrumbs crumbs
     crumbs = crumbs.map do |group|
         "<li class='breadcrumb-item'><a href='#{group[0]}'>#{group[1]}</a></li>"

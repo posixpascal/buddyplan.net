@@ -19,6 +19,8 @@ gem 'uglifier', '>= 1.3.0'
 gem "rb-readline"
 gem "devise"
 gem 'chosen-rails'
+gem 'capistrano'
+gem "rolify"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -29,7 +31,12 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'capistrano-bundler', '~> 1.5'
+gem 'capistrano-rbenv', '~> 2.1'
+gem 'capistrano-passenger'
+gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+gem "capistrano-rails", "~> 1.4", require: false
+gem 'cap-ec2'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
+  rolify :role_cname => 'Permission'
+
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -7,6 +8,4 @@ class User < ApplicationRecord
   has_many :actors
   has_many :movies, :through => :actors
   has_many :casts
-
-
 end
