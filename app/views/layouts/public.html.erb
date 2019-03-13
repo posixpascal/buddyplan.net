@@ -12,29 +12,26 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab:700" rel="stylesheet">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
 <%= render partial: "partials/navigation" %>
 <div class="container">
   <div class="row">
-    <% if current_user %>
-      <div class="col-sm-3">
-        <div class="pt-5 sidebar">
-          <%= render partial: "partials/sidebar", movie: @movie %>
-        </div>
-      </div>
-    <% end %>
-    <div class="
-      <% if current_user %>col-sm-9
-      <% else %>col-sm-12
-      <% end %>">
+    <div class="col-sm-12">
       <div class="pt-5">
+        <div class="project media">
+            <div class="media-body">
+              <h5 class="mt-0"><%= content_for :lead_title %></h5>
+              <%= content_for :lead %>
+          </div>
+        </div>
+        <br>
         <%= content_for :breadcrumbs %>
         <div class=" content-wrapper">
           <div class="content-wrapper-title"><%= content_for :title %></div>
@@ -52,6 +49,11 @@
         <%= content_for :another_card %>
       </div>
     </div>
+  </div>
+  <div class="branding-element text-center">
+    <%= image_tag "logo_graphic.png", width: 64 %>
+    <p class="branding">Powered by <strong class="logo-text">buddyplan.net</strong></p>
+    <a href="<%= root_url %>" class="btn btn-lg btn-primary">Getting started</a>
   </div>
 </div>
 

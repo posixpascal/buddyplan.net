@@ -9,7 +9,7 @@
 
 server "ec2-54-166-223-15.compute-1.amazonaws.com", user: "ubuntu"
 set :ssh_options, { keys:  ["#{ENV['HOME']}/.ssh/buddyplan.pem"] }
-
+set :bundle_without, %w{test}.join(' ')
 # role-based syntax
 # ==================
 

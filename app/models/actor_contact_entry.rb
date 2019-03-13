@@ -1,0 +1,2 @@
+class ActorContactEntry < ApplicationRecord
+end

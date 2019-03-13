@@ -31,7 +31,16 @@ end
     </tbody>
   </table>
 <% end %>
+<div class="svg-box text-center p-3">
+<%= raw @qrcode.as_svg(offset: 0, color: '000',
+                       shape_rendering: 'crispEdges',
+                       module_size: 4) %>
+<br><br>
+  <p>You can collect personal information using the following URL or QR code
+  <code><%= @collect_info_url %></code></p>
+</div>
 
 <div class="content-wrapper-footer">
   <%= link_to "Create", new_movie_actor_path(@movie), class: "btn btn-xs btn-primary" %>
 </div>
+

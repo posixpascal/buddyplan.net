@@ -7,6 +7,8 @@ class Movies::ActorsController < ApplicationController
 
   def index
     @actors = @movie.actors
+    @collect_info_url = "https://bupl.net/movie/#{@movie.id}/actors/collect"
+    @qrcode = RQRCode::QRCode.new(@collect_info_url)
   end
 
   def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_213340) do
+ActiveRecord::Schema.define(version: 2019_03_13_003632) do
 
   create_table "action_events", force: :cascade do |t|
     t.integer "schedule_id"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(version: 2019_03_12_213340) do
     t.datetime "scheduled_on"
     t.index ["schedule_event_id"], name: "index_action_events_on_schedule_event_id"
     t.index ["schedule_id"], name: "index_action_events_on_schedule_id"
+  end
+
+  create_table "actor_contact_entries", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "phonenumber"
+    t.string "email"
+    t.text "allergenes"
+    t.string "street"
+    t.string "location"
+    t.string "postalcode"
+    t.string "dob"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "movie_id"
+    t.index ["movie_id"], name: "index_actor_contact_entries_on_movie_id"
   end
 
   create_table "actors", force: :cascade do |t|

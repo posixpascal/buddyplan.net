@@ -26,6 +26,21 @@ var init = function(){
         no_results_text: 'No results matched',
         width: '200px'
     });
+
+    // memory fields
+    $("input, textarea").each(function(){
+        var $in = $(this);
+        var fieldName = "_field_" + $in.attr("name");
+
+        $in.on("change", function(){
+           localStorage.setItem(fieldName, $in.val());
+        });
+
+        var memory = localStorage.getItem(fieldName);
+        if (memory){
+            $in.val(memory);
+        }
+    })
 };
 
 $(init)

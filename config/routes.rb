@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
 
+  namespace :movies do
+    namespace :actors do
+      get 'collector/show'
+      get 'collector/create'
+    end
+  end
   devise_for :users
   root to: "home#index"
   resources :movies do
-    resources :actors, controller: "movies/actors"
+    resources :actors, controller: "movies/actors" do
+      collection do
+        get "/collect", to: "movies/actors/collector#show"
+        post "/collect", to: "movies/actors/collector#create"
+      end
+    end
     resources :locations, controller: "movies/locations"
     resources :scenes, controller: "movies/scenes"
     resources :roles, controller: "movies/roles"
