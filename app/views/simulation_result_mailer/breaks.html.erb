@@ -1,0 +1,17 @@
+<% @simulation_result.data.each do |days| %>
+  <% days.each do |break_event| %>
+    <p>Break at: <%= break_event[:location] %></p>
+    <p>With <%= break_event[:participants].size %> participants
+      at <%= break_event[:scheduled_for].strftime("%d.%m.%Y @ %H:%M") %>:</p>
+    <ul>
+      <% break_event[:participants].each do |v| %>
+        <li>
+          <%= v[:firstname] %>
+          <%= v[:lastname] %>
+        </li>
+      <% end %>
+    </ul>
+    <br><br>
+    <hr>
+  <% end %>
+<% end %>

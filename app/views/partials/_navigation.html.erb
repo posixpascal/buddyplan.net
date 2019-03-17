@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-default">
+<nav class="navbar navbar-expand-lg  bg-white">
   <div class="container">
-    <a class="navbar-brand" href="<%= root_path %>">
-      <%= image_tag "logo.svg", class: "logo" %>
-      <span class="logo-text">buddyplan.net</span>
+    <a class="navbar-brand" class="text-dark" href="<%= root_path %>">
+      <%= image_tag "buddyplan", class: "logo", style: "padding-right: 5px;" %>
+      <span class="logo-text text-dark">buddyplan.net</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,31 +22,65 @@
         </div>
       </div>
 
-      <ul class="navbar-nav ml-lg-auto">
-        <% if current_user %>
+      <% if current_user %>
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= root_path %>">
+              <%= small_icon "home", height: 25 %>
+              <span class="nav-link-inner--text">Home</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link nav-link-icon" href="<%= movies_path %>">
-              <i class="ni ni-favourite-28"></i>
+              <%= small_icon "camera", height: 25 %>
               <span class="nav-link-inner--text">Movies</span>
             </a>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="#" role="button">
-              <i class="ni ni-settings-gear-65"></i>
-              <span class="nav-link-inner--text">Login</span>
+            <a class="nav-link nav-link-icon" href="<%= pricing_index_path %>">
+              <%= small_icon "money", height: 25 %>
+              <span class="nav-link-inner--text">Pricing</span>
             </a>
           </li>
-        <% else %>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= account_index_path %>">
+              <%= small_icon "account", height: 25 %>
+              <span class="nav-link-inner--text">Account</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= destroy_user_session_path %>" data-method="delete" role="button">
+              <%= small_icon "login", height: 25 %>
+              <span class="nav-link-inner--text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= root_path %>">
+              <%= small_icon "home", height: 25 %>
+              <span class="nav-link-inner--text">Home</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="<%= pricing_index_path %>">
+              <%= small_icon "money", height: 25 %>
+              <span class="nav-link-inner--text">Pricing</span>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link nav-link-icon" href="<%= new_user_session_path %>" role="button">
-              <i class="ni ni-settings-gear-65"></i>
+              <%= small_icon "login", height: 25 %>
               <span class="nav-link-inner--text">Login</span>
             </a>
           </li>
-        <% end %>
+        </ul>
+      <% end %>
 
-      </ul>
     </div>
   </div>
 </nav>

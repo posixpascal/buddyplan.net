@@ -1,0 +1,2 @@
+class ItemsScene < ApplicationRecord
+end

@@ -37,7 +37,7 @@ class Movies::ScenesController < ApplicationController
 
   private
   def scene_params
-    params.require(:scene).permit(:name)
+    params.require(:scene).permit(:name, :description, role_ids: [], item_ids: [])
   end
 
   def set_scene

@@ -1,7 +1,6 @@
 class Car < ApplicationRecord
   belongs_to :actor, optional: true
-  belongs_to :movie
-
+  has_many :ride_events, dependent: :destroy
 
   def readable_name
     "#{vendor} (#{license_plate})"

@@ -1,0 +1,37 @@
+<%= content_for :title do %>Invite moderator<% end %>
+
+<%= form_tag new_movie_access_manager_invite_path(@movie), method: "POST" do |form| %>
+  <div class="form-group">
+    <%= label "invite[email]", "E-mail" %>
+    <%= email_field "invite", :email, class: "form-control" %>
+  </div>
+
+  <% Movie.with_role(:admin, current_user).each do |movie| %>
+    <b>Manage access to <%= movie.title %></b>
+    <div class="p-3">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th></th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+      <% @permissions.each do |permission| %>
+          <tr>
+            <td><%= permission.name %></td>
+            <td width="1"><input type="checkbox" name="invite[permissions][<%= movie.id %>][]" value="<%= permission.name %>"></td>
+          </tr>
+      <% end %>
+
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<hr>
+  <div class="actions">
+    <%= submit_tag "Invite", class: "btn btn-primary" %>
+  </div>
+<% end %>

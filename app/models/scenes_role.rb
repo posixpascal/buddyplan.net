@@ -1,0 +1,2 @@
+class ScenesRole < ApplicationRecord
+end

@@ -1,0 +1,44 @@
+<%= content_for :title do %>Simulation started<% end %>
+
+<p>
+  We've scheduled a simulation for your movie project <strong class="logo-text"><%= @movie.title %></strong>.<br>
+  Once it's done we'll send you an e-mail report to the address associated with your account.
+</p>
+
+This simulation checks the following:
+<ul>
+  <li>Whether or not enough cars are present at a certain destination at any time</li>
+  <li>Whether or not people come home or stay at a safe location during each day</li>
+  <li>Whether or not days exceed a healthy amount of work time (regulated by law)</li>
+  <li>Check Weather conditions for each location if possible</li>
+  <li>Calculating rough estimate of miles traveled per car</li>
+  <li>Note how many people are eating/sleep at a certain location</li>
+  <li>If every required cast is available at the location</li>
+</ul>
+<hr>
+<p class="text-danger">Please note that all these simulations are just an estimate based on what you entered on our platform.
+Real life conditions may vary.</p>
+<hr>
+<p>
+  How to arrange your schedule for best results:<br>
+  <ul>
+    <li>
+      Add a "starting" location for each actor so buddyplan knows where they are
+    </li>
+    <li>
+      Add all rides (whether train arrivements, car rides, departures or whatever) and geo-tag it accordingly.
+    </li>
+    <li>
+      A new day starts as soon as a CloseDayEvent is encountered it is suggested that you add these events to every day."
+    </li>
+    <li>
+      Tag all actors who are involved in any break and any shot everytime you add an event
+    </li>
+  </ul>
+  The more detailed you are about your schedule the better the simulation results are.
+</p>
+
+<br><br>
+You can keep this page open to check progress or close it entirely.
+<br><br>
+<center><%= link_to "Go back", movie_url(@movie), class: "btn btn-primary" %></center>

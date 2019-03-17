@@ -37,7 +37,7 @@ class Movies::LocationsController < ApplicationController
 
   private
   def location_params
-    params.require(:location).permit(:name)
+    params.require(:location).permit(:name, :required_attendance, :for_sleeping, :lat, :lng)
   end
 
   def set_location

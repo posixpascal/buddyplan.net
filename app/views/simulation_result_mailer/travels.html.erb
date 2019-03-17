@@ -1,0 +1,21 @@
+<% @simulation_result.data.each do |days| %>
+  <% days.each do |ride_event| %>
+    <p>Ride from: <u><%= ride_event[:from] %></u> &dash;&raquo; <u><%= ride_event[:to] %></u></p>
+    <p>With <%= ride_event[:participants].size %> participants
+      at <%= ride_event[:scheduled_for].strftime("%d.%m.%Y @ %H:%M") %>:</p>
+    <table width="100%">
+        <% ride_event[:participants].each do |v| %>
+        <tr>
+          <td><%= v[:firstname] %>
+          <%= v[:lastname] %> </td>
+          <td><%= v[:role] %></td>
+        </tr>
+      <% end %>
+    </table>
+    <br>
+    Car: <%= ride_event[:car][:license_plate] %> (oder: <%= ride_event[:car][:owner] %>'s Auto)
+    <br><br>
+  <br><br>
+    <hr>
+  <% end %>
+<% end %>

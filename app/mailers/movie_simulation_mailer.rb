@@ -1,0 +1,2 @@
+class MovieSimulationMailer < ApplicationMailer
+end

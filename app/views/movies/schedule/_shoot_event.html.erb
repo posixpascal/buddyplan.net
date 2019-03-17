@@ -1,18 +1,19 @@
-<div class="">
+<div class="schedule-event" data-id="<%= @event.id %>">
+  <div class="drag-handle"><%= image_tag "sort", height: 16 %></div>
   <i class="lead-icon fa fa-camera fa-fw fa-2x"></i>
   <div class="row p-3">
     <div class="col-sm-6">
       <% if @event.schedulable.location %>
-        <i class="fa fa-fw fa-map-pin"></i> <%= link_to @event.schedulable.location&.name, edit_movie_location_path(@movie, @event.schedulable.location) %>
+        <%= small_icon("map") %> <%= link_to @event.schedulable.location&.name, edit_movie_location_path(@movie, @event.schedulable.location) %>
         <br><br>
       <% end %>
       <% if @event.schedulable.scheduled_on %>
-        <i class="fa fa-fw fa-clock-o"></i> <%= @event.schedulable.scheduled_on.strftime("%H:%M") %>
+        <%= small_icon("clock-o") %> <%= @event.schedulable.scheduled_on.strftime("%H:%M") %>
         <br><br>
       <% end %>
 
       <% if @event.event_participants.count %>
-        <i class="fa fa-fw fa-users"></i> <%= @event.event_participants.count %>
+        <%= small_icon("actors") %> <%= @event.event_participants.count %>
         <%= participants @event.event_participants %>
         <br><br>
       <% end %>
@@ -21,20 +22,19 @@
     <div class="col-sm-6">
       <% if @event.schedulable.scene %>
 
-        <i class="fa fa-fw fa-camera"></i> <%= link_to @event.schedulable.scene.name, edit_movie_scene_path(@movie, @event.schedulable.scene) %>
+        <%= small_icon("scene") %> <%= link_to @event.schedulable.scene.name, edit_movie_scene_path(@movie, @event.schedulable.scene) %>
         <br><br>
       <% end %>
 
 
       <% if @event.schedulable.estimate %>
-          <i class="fa fa-fw fa-hourglass-2"></i> <%= @event.schedulable.estimate %> minutes
+        <%= small_icon("hourglass-2") %> <%= @event.schedulable.estimate %> minutes
       <% end %>
 
       <br><br>
       <%= link_to "Edit", edit_movie_schedule_event_shoot_event_path(@movie, @event, @event.schedulable), class: "btn btn-sm btn-outline-primary" %>
       <%= link_to "Delete", movie_schedule_event_shoot_event_path(@movie, @event, @event.schedulable), method: "delete", class: "btn btn-sm btn-outline-primary" %>
-
+      <br><br>
     </div>
   </div>
 </div>
-<hr style="margin: 10px -15px">

@@ -1,14 +1,30 @@
 Rails.application.routes.draw do
 
-  namespace :movies do
-    namespace :actors do
-      get 'collector/show'
-      get 'collector/create'
-    end
+  get 'account/index'
+  get 'pricing/index'
+  authenticate :user, ->(u) { u.id } do
+    require 'sidekiq/web'
+    require 'sidekiq/cron/web'
+    mount Sidekiq::Web => '/sidekiq'
   end
+
+
+
+
   devise_for :users
   root to: "home#index"
   resources :movies do
+    resource :access_manager, only: :show, controller: "movies/access_manager" do
+      resources :invites, controller: "movies/access_manager/invites" do
+        collection do
+          post "/new", to: "movies/access_manager/invites#create"
+        end
+      end
+    end
+
+
+
+    resource :simulation, only: [:create, :show], controller: "movies/simulation"
     resources :actors, controller: "movies/actors" do
       collection do
         get "/collect", to: "movies/actors/collector#show"
@@ -25,11 +41,16 @@ Rails.application.routes.draw do
     resources :inventories, controller: "movies/inventories" do
       resources :items, controller: "movies/inventories/items"
     end
-    resource :budget
+
+    resource :budget, controller: "movies/budget" do
+    end
+
+    resources :movie_money_transfers, controller: "movies/budget"
 
     resource :schedule, controller: "movies/schedule" do
-      get "/actor/:actor_id", to: "movies/schedule#for_actor"
+      get "/actor/:actor_id", to: "movies/schedule#for_actor", as: "actor"
       get "/events/:event/:day", to: "movies/schedule/events#create", as: "schedule_event"
+      post "/:schedule_id/sort", to: "movies/schedule/sort#create"
     end
 
     resources :schedule_events,  controller: "movies/schedule_events" do

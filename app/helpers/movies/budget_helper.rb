@@ -1,0 +1,2 @@
+module Movies::BudgetHelper
+end

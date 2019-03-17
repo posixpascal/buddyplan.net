@@ -12,7 +12,6 @@ class Movies::InventoriesController < ApplicationController
   def create
     @inventory = @movie.inventories.new(inventory_params)
 
-
     return redirect_to movie_inventory_path(@movie, @inventory) if @inventory.save
 
     render json: @inventory.errors
@@ -20,6 +19,8 @@ class Movies::InventoriesController < ApplicationController
 
   def show
   end
+
+
 
   def destroy
     @inventory.delete

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  simulation: one
+  simulation_job_type: MyString
+  healthy_status: 1
+  emailed: false
+  emailed_at: 2019-03-13 20:12:32
+
+two:
+  simulation: two
+  simulation_job_type: MyString
+  healthy_status: 1
+  emailed: false
+  emailed_at: 2019-03-13 20:12:32

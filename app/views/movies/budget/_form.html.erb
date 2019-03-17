@@ -1,0 +1,67 @@
+<%= form_for [@movie, @transfer] do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :budget_amount %>
+        <%= form.text_field :budget_amount, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :budget_type %>
+        <%= select_tag(:budget_type, options_for_select([['Income', 'income'], ['Withdrawal', 'withdrawal']]), class: "form-control") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :actor_id %>
+        <br>
+        <%= form.select :actor_id,
+                        @movie.actors.all.map {|u| [u.firstname, u.id]},
+                        {include_blank: true},
+                        {class: 'chosen-select'}
+        %>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :item_id %>
+        <br>
+        <%= form.select :item_id,
+                        @movie.items.all.map {|u| [u.name, u.id]},
+                        {include_blank: true},
+                        {class: 'chosen-select'}
+        %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrapper-footer">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -23,7 +23,7 @@ class Movies::ScheduleController < ApplicationController
 
   private
   def set_schedule
-    @schedule = @movie.schedule
+    @schedule = ::Schedule.find(@movie.schedule_id)
   end
 
   def schedule_params

@@ -1,0 +1,8 @@
+<%= content_for :breadcrumbs do
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_inventories_path(@movie), "Inventories"], [movie_inventory_path(@movie, @inventory), @inventory.name]])
+end
+%>
+
+<%= content_for :title do %>Edit <%= @item.name %><% end %>
+<%= render 'form', movie: @movie, inventory: @inventory %>
+

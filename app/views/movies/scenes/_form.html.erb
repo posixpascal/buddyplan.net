@@ -20,7 +20,70 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, class: "form-control", :rows => 20 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <b>Roles</b>
+      <p class="text-muted">Select the roles which are required for the scene</p>
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th><i class="fa fa-check"></i></th>
+          <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @movie.roles.all.each do |role| %>
+          <tr>
+            <td width="1">
+              <%= check_box_tag "scene[role_ids][]", role.id, form.object.roles.include?(role) %>
+            </td>
+            <td>
+              <label><%= role.name %></label>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6">
+      <b>Items</b>
+      <p class="text-muted">Select the items which are required for the scene</p>
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th><i class="fa fa-check"></i></th>
+          <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @movie.items.all.each do |item| %>
+          <tr>
+            <td width="1">
+              <%= check_box_tag "scene[item_ids][]", item.id, form.object.items.include?(item) %>
+            </td>
+            <td>
+              <label><%= item.name %></label>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="content-wrapper-footer">
     <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+
+

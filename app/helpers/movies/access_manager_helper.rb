@@ -1,0 +1,2 @@
+module Movies::AccessManagerHelper
+end

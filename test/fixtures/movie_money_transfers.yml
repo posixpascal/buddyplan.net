@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  budget_type: MyString
+  budget_amount: 1
+  user_id: 1
+  actor_id: 1
+  item_id: 1
+  url: MyString
+
+two:
+  movie: two
+  budget_type: MyString
+  budget_amount: 1
+  user_id: 1
+  actor_id: 1
+  item_id: 1
+  url: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  simulation: one
+  simulation_job_type: MyString
+  simulation_job_id: MyString
+  status: 1
+
+two:
+  simulation: two
+  simulation_job_type: MyString
+  simulation_job_id: MyString
+  status: 1

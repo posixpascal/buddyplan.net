@@ -14,6 +14,10 @@ class Movies::Inventories::ItemsController < ApplicationController
     @item = @inventory.items.new
   end
 
+  def edit
+
+  end
+
   def destroy
     @item.destroy
     redirect_to movie_inventory_path(@movie, @inventory)
@@ -24,7 +28,7 @@ class Movies::Inventories::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:license_plate, :car_owner_id, :name)
+    params.require(:item).permit(:license_plate, :car_owner_id, :name, scene_ids: [])
   end
 
   def set_item

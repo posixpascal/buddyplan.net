@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  status: 1
+  user: one
+
+two:
+  movie: two
+  status: 1
+  user: two

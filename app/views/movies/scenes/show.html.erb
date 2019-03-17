@@ -1,7 +1,39 @@
 <%= content_for :breadcrumbs do
-  breadcrumbs([[movie_path(@movie), @movie.title], [movie_scenes_path(@movie), "scenes"], [movie_role_path(@movie, @scene), @scene.name]])
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_scenes_path(@movie), "Scenes"], [movie_scene_path(@movie, @scene), @scene.name]])
 end
 %>
 <%= content_for :title do %>
-  <%= @scene.name %>
+  Scene <%= @scene.name %>
 <% end %>
+
+Description<br>
+<p class="text-muted"><%= @scene.description || "-" %></p>
+
+<hr>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    Roles
+    <div>
+      <% @scene.roles.each do |role| %>
+        <div><span class="badge badge-primary"><%= role.name %></span></div>
+      <% end %>
+      <% if @scene.roles.size == 0 %>
+        <p class="text-muted empty-message">No roles required</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    Items
+    <div>
+      <% @scene.items.each do |item| %>
+        <div><span class="badge badge-primary"><%= item.name %></span></div>
+      <% end %>
+      <% if @scene.items.size == 0 %>
+        <p class="text-muted empty-message">No items required</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+
+<%= link_to :edit, edit_movie_scene_url(@movie, @scene), class: "btn btn-primary" %>

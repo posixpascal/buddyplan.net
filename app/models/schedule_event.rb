@@ -1,4 +1,6 @@
 class ScheduleEvent < ApplicationRecord
+  default_scope { order(position: :asc) }
+
   belongs_to :location, optional: true
   belongs_to :inventory, optional: true
 

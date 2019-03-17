@@ -1,0 +1,36 @@
+<%= content_for :title do %>Access Manager
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Roles</th>
+    <% if current_user.has_role?(:admin, @movie) %><th colspan="3"></th><% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% User.with_role(:moderate, @movie).each do |user| %>
+    <tr>
+      <td>
+        <%= user.email %>
+      </td>
+      <td>
+        <% user.roles.each do |role| %>
+          <div><span class="badge badge-primary"><%= role.name %></span></div>
+        <% end %>
+      </td>
+      <% if current_user.has_role?(:admin, @movie) %>
+        <td>
+          <%= link_to "Manage", class: "" %>
+        </td>
+        <td>
+          <%= link_to "Remove", class: "" %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Invite", new_movie_access_manager_invite_path(@movie) %>

@@ -20,6 +20,7 @@ gem "rb-readline"
 gem "devise"
 gem 'chosen-rails'
 gem 'capistrano'
+gem 'devise_invitable', '~> 2.0.0'
 gem "rolify"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -61,6 +62,9 @@ group :development do
 end
 
 gem "rqrcode", require: true
+gem "sidekiq"
+gem "sidekiq-status"
+gem "sidekiq-cron"
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

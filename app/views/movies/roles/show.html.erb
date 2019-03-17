@@ -5,3 +5,21 @@ end
 <%= content_for :title do %>
   <%= @role.name %>
 <% end %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    Scenes
+    <div>
+      <% @role.scenes.each do |scene| %>
+        <div><a href="<%= movie_scene_path(@movie, scene) %>" class="badge badge-primary"><%= scene.name %></a></div>
+      <% end %>
+      <% if @role.scenes.size == 0 %>
+        <p class="text-muted empty-message">Does not play in any scene</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+
+<%= link_to :edit, edit_movie_role_url(@movie, @role), class: "btn btn-primary" %>
+

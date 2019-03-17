@@ -1,4 +1,6 @@
 <%= form_for [@movie, @schedule] do |form| %>
+  <input type="hidden" name="x_movie_id" value="<%= @movie.id %>">
+  <input type="hidden" name="x_schedule_id" value="<%= @schedule.id %>">
   <% if @movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -10,7 +12,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
@@ -24,37 +25,44 @@
         <%= form.datetime_field :scheduled_to, class: "flatpicker form-control" %>
       </div>
     </div>
+
   </div>
+  <div >
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
   <hr>
   <div class="section scheduled-days">
     <% @schedule.schedule_days.each do |schedule_day| %>
       <div class="scheduled-day">
-        <%= schedule_day.strftime("%d.%m.%Y") %>
+        <%= schedule_day.strftime("%A, %d.%m.%Y") %>
+        <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapse_day_<%= schedule_day.to_time.to_i %>" aria-expanded="false" aria-controls="collapseExample">
+        View / Hide
+      </button>
       </div>
-      <div class="scheduled-events">
+      <div class="scheduled-events collapse" id="collapse_day_<%= schedule_day.to_time.to_i %>">
         <% if @schedule.events_at(schedule_day).count == 0 %>
           <div class="scheduled-events-empty">No events for <%= schedule_day.strftime("%d.%m.%Y") %></div>
         <% end %>
-        <% @schedule.events_at(schedule_day).each do |event|
-          next if event.schedulable_id.nil?
-          @event = event
-         %>
+        <div class="sortable-list">
+          <% @schedule.events_at(schedule_day).each do |event|
+            next if event.schedulable_id.nil?
+            @event = event
+ %>
 
-          <%= render partial: event.schedulable_type.underscore %>
-        <% end %>
+            <%= render partial: event.schedulable_type.underscore %>
+          <% end %>
+        </div>
         <div>
           <div class="d-flex justify-content-between">
-            <%= link_to with_icon("car", "Add Ride"), schedule_event_movie_schedule_path(@movie, "RideEvent", schedule_day), class: "btn btn-primary" %>
-            <%= link_to with_icon("clock-o", "Add Break"), schedule_event_movie_schedule_path(@movie, "BreakEvent", schedule_day), class: "btn btn-primary" %>
-            <%= link_to with_icon("camera", "Add Shoot"), schedule_event_movie_schedule_path(@movie, "ShootEvent", schedule_day), class: "btn btn-primary" %>
-            <%= link_to with_icon("asterisk", "Add Action"), schedule_event_movie_schedule_path(@movie, "ActionEvent", schedule_day), class: "btn btn-primary" %>
+            <%= link_to with_icon("car", "Add Ride"), schedule_event_movie_schedule_path(@movie, "RideEvent", schedule_day), class: "btn " %>
+            <%= link_to with_icon("clock-o", "Add Break"), schedule_event_movie_schedule_path(@movie, "BreakEvent", schedule_day), class: "btn " %>
+            <%= link_to with_icon("camera", "Add Shoot"), schedule_event_movie_schedule_path(@movie, "ShootEvent", schedule_day), class: "btn " %>
+            <%= link_to with_icon("task", "Add Action"), schedule_event_movie_schedule_path(@movie, "ActionEvent", schedule_day), class: "btn " %>
           </div>
         </div>
       </div>
+      <hr>
     <% end %>
-  </div>
-
-  <div class="content-wrapper-footer">
-    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

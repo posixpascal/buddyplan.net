@@ -1,0 +1,35 @@
+<%= content_for :title do %>
+  Budget
+<% end %>
+
+<h2 class="text-center text-<% if @current_balance < 0 %>danger<% elsif @current_balance > 0 %>success<% end %>">
+  <%= number_to_currency @current_balance / 100, unit: '€' %>
+</h2>
+<div class="text-center text-muted"><small>Current Project Budget</small></div>
+
+<hr>
+<div class="logo-text"><%= small_icon "exchange", height: 20 %> Transfers</div>
+
+<% @transfers.each do |transfer| %>
+  <div class="money-transfer <%= transfer.budget_type %>">
+    <h4 class="text-center text-<% if transfer.budget_type == 'withdrawal' %>danger<% else %>success<% end %>">
+      <%= raw '&dash;' if transfer.budget_type == 'withdrawal' %><%= number_to_currency transfer.budget_amount / 100, unit: '€' %>
+    </h4>
+    <div class="text-center text-muted"><small><%= transfer.title || "Transfer Amount" %></small></div>
+    <div class="d-flex justify-content-between">
+      <% if transfer.actor %>
+        <div><%= small_icon "user" %> <%= transfer.actor.firstname %> <%= transfer.actor.lastname %></div>
+      <% end %>
+      <% if transfer.item %>
+        <div><%= small_icon "inventory" %> <%= transfer.item.name %></div>
+      <% end %>
+      <div>
+        <%= link_to "Delete", movie_movie_money_transfer_path(@movie, transfer), method: "delete" %>
+      </div>
+  </div>
+    <hr>
+<% end %>
+<% if @transfers.size == 0 %>
+    No transfers recorded.
+<% end %>
+<%= link_to "Exchange Money", new_movie_budget_path(@movie), class: "btn btn-primary" %>

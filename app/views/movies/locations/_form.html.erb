@@ -20,6 +20,38 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :lat, "Latitude" %>
+        <%= form.text_field :lat, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :lng, "Latitude" %>
+        <%= form.text_field :lng, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.check_box :for_sleeping, class: "" %>
+        <%= form.label :for_sleeping, "For sleeping" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.check_box :required_attendance, class: "" %>
+        <%= form.label :required_attendance, "Requires attendance?" %>
+        <br>
+        <small class="text-hint text-muted hint">Check this if there has to be at least one person at this location at any time.</small>
+      </div>
+    </div>
+  </div>
+
   <div class="content-wrapper-footer">
     <%= form.submit class: "btn btn-primary" %>
   </div>

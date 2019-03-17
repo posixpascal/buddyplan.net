@@ -801,6 +801,8 @@ GEM
     chromedriver-helper (2.1.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     chunky_png (1.3.11)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -819,9 +821,17 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.0)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     erubi (1.8.0)
+    et-orbi (1.1.7)
+      tzinfo
     execjs (2.7.0)
     ffi (1.10.0)
+    fugit (1.1.8)
+      et-orbi (~> 1.1, >= 1.1.7)
+      raabro (~> 1.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.6.0)
@@ -855,6 +865,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
+    numerizer (0.1.1)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
     prawn (2.2.2)
@@ -862,6 +873,7 @@ GEM
       ttfunk (~> 1.5)
     public_suffix (3.0.3)
     puma (3.12.0)
+    raabro (1.1.6)
     rack (2.0.6)
     rack-protection (2.0.5)
       rack
@@ -925,6 +937,12 @@ GEM
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    sidekiq-cron (1.1.0)
+      fugit (~> 1.1)
+      sidekiq (>= 4.2.1)
+    sidekiq-status (1.0.1)
+      chronic_duration
+      sidekiq (>= 3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -986,6 +1004,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  devise_invitable (~> 2.0.0)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   prawn
@@ -996,6 +1015,9 @@ DEPENDENCIES
   rqrcode
   sass-rails (~> 5.0)
   selenium-webdriver
+  sidekiq
+  sidekiq-cron
+  sidekiq-status
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.3.6)

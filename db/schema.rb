@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_003632) do
+ActiveRecord::Schema.define(version: 2019_03_17_003508) do
 
   create_table "action_events", force: :cascade do |t|
     t.integer "schedule_id"
@@ -25,6 +25,27 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.datetime "scheduled_on"
     t.index ["schedule_event_id"], name: "index_action_events_on_schedule_event_id"
     t.index ["schedule_id"], name: "index_action_events_on_schedule_id"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "actor_contact_entries", force: :cascade do |t|
@@ -164,6 +185,13 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "items_scenes", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "scene_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "locations", force: :cascade do |t|
     t.integer "movie_id"
     t.integer "user_id"
@@ -172,8 +200,26 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.decimal "lng", precision: 10, scale: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "for_sleeping"
+    t.boolean "required_attendance"
+    t.text "last_weather_conditions"
+    t.datetime "last_weather_check"
     t.index ["movie_id"], name: "index_locations_on_movie_id"
     t.index ["user_id"], name: "index_locations_on_user_id"
+  end
+
+  create_table "movie_money_transfers", force: :cascade do |t|
+    t.integer "movie_id"
+    t.string "budget_type"
+    t.float "budget_amount"
+    t.integer "user_id"
+    t.integer "actor_id"
+    t.integer "item_id"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.index ["movie_id"], name: "index_movie_money_transfers_on_movie_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -218,6 +264,15 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.integer "movie_id"
   end
 
+  create_table "roles_scenes", force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "scene_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_roles_scenes_on_role_id"
+    t.index ["scene_id"], name: "index_roles_scenes_on_scene_id"
+  end
+
   create_table "scenes", force: :cascade do |t|
     t.integer "movie_id"
     t.string "name"
@@ -252,6 +307,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "schedule_id"
+    t.integer "position"
     t.index ["inventory_id"], name: "index_schedule_events_on_inventory_id"
     t.index ["location_id"], name: "index_schedule_events_on_location_id"
     t.index ["schedule_id"], name: "index_schedule_events_on_schedule_id"
@@ -283,6 +339,38 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.index ["schedule_id"], name: "index_shoot_events_on_schedule_id"
   end
 
+  create_table "simulation_jobs", force: :cascade do |t|
+    t.integer "simulation_id"
+    t.string "simulation_job_type"
+    t.string "simulation_job_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["simulation_id"], name: "index_simulation_jobs_on_simulation_id"
+  end
+
+  create_table "simulation_results", force: :cascade do |t|
+    t.integer "simulation_id"
+    t.string "simulation_job_type"
+    t.integer "healthy_status"
+    t.boolean "emailed"
+    t.datetime "emailed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "data"
+    t.index ["simulation_id"], name: "index_simulation_results_on_simulation_id"
+  end
+
+  create_table "simulations", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "status"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_simulations_on_movie_id"
+    t.index ["user_id"], name: "index_simulations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -294,7 +382,19 @@ ActiveRecord::Schema.define(version: 2019_03_13_003632) do
     t.string "firstname"
     t.string "lastname"
     t.date "dob"
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.integer "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_users_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

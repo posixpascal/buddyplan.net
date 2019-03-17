@@ -2,6 +2,12 @@
   breadcrumbs([[movie_path(@movie), @movie.title], [movie_locations_path(@movie), "Locations"], [movie_role_path(@movie, @location), @location.name]])
 end
 %>
+
 <%= content_for :title do %>
   <%= @location.name %>
+<% end %>
+
+
+<% if @location.last_weather_conditions %>
+  <div> <%= (@location.last_weather_conditions["currently"]['temperature']).round %>° <%= image_tag @location.last_weather_conditions['currently']['icon'], height: 20, style: "position:relative;top:-2px" %> <%= @location.last_weather_conditions['currently']['summary']  %></div>
 <% end %>

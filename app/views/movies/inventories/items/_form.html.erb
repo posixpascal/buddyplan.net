@@ -20,28 +20,34 @@
       </div>
     </div>
   </div>
-
-  <% if @inventory.cars? %>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <%= form.label "license_plate" %>
-          <input type="text" class="form-control" name="inventory[data][license_plate]">
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <%= form.label :car_owner_id %><br>
-          <%= form.select :car_owner_id,
-                            @movie.actors.all.map { |u| [u.firstname, u.id] },
-                            { include_blank: true },
-                            { class: 'chosen-select' }
-            %>
-        </div>
-      </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <b>Scenes</b>
+      <p class="text-muted">Select the scenes in which this item is needed</p>
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th><i class="fa fa-check"></i></th>
+          <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @movie.scenes.all.each do |scene| %>
+          <tr>
+            <td width="1">
+              <%= check_box_tag "item[scene_ids][]", scene.id, form.object.scenes.include?(scene) %>
+            </td>
+            <td>
+              <label><%= scene.name %></label>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-  <% end %>
 
   <div class="content-wrapper-footer">
     <%= form.submit class: "btn btn-primary" %>
