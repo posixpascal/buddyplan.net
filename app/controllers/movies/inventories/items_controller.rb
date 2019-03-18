@@ -1,7 +1,7 @@
 class Movies::Inventories::ItemsController < ApplicationController
   before_action :set_movie
   before_action :set_inventory
-  before_action :set_item, only: [:destroy, :edit]
+  before_action :set_item, only: [:destroy, :edit, :update]
   def create
     @item = @inventory.items.create(item_params)
     if @item.errors
@@ -12,6 +12,12 @@ class Movies::Inventories::ItemsController < ApplicationController
 
   def new
     @item = @inventory.items.new
+  end
+
+  def update
+    @item.update(item_params)
+    flash[:success] = "Item saved"
+    return redirect_to edit_movie_inventory_item_path(@movie, @inventory)
   end
 
   def edit
