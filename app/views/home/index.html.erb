@@ -1,14 +1,246 @@
-<%= content_for :title do %>
-  Under maintainance
-<% end %>
-<p>Welcome potential partner<br>
-  This page is under construction during Summer 2019</p>
-<p>
-You have either received an invitation or have been lucky to alight here
-</p>
-<p>
-If the latter is the case we recommend returning in Autumn 2019. <br>
-  Otherwise you know who to contact in order to place an inquiry
-</p>
-<p>We are looking forward to joining forces with you</p>
+<%= content_for :title do %>Home<% end %>
+
+<div class="position-relative">
+  <!-- shape Hero -->
+  <section class="section section-lg section-shaped pb-250">
+    <div class="shape shape-style-4 shape-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="container  d-flex">
+      <div class="col px-0">
+        <div class="row">
+          <div class="col-lg-8">
+            <h1 class="display-5 logo-text text-white">Your scheduling companion
+            </h1>
+            <p class="lead  text-white"><span class="logo-text">buddyplan</span> makes it easy to schedule and plan big events thoroughly.<br>
+            It tracks rides, breaks, inventories, documents, weather and budget automagically for you.</p>
+            <div class="btn-wrapper">
+              <a href="<%= new_user_session_path %>" class="btn btn-white text-primary btn-icon btn-lg mb-3 mb-sm-0">
+                <span class="btn-inner--text"><i class="fa fa-sign-in"></i> Getting started</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <%= image_tag "safari", class: "img-responsive img-fluid" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SVG separator -->
+    <div class="separator separator-bottom separator-skew">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <!-- 1st Hero Variation -->
+</div>
+
+<section class="section section-lg pt-lg-0 mt--200">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="row row-grid">
+          <div class="col-lg-4">
+            <div class="card card-lift--hover shadow border-0">
+              <div class="card-body py-5">
+                <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <h6 class="text-primary text-uppercase">Scheduling</h6>
+                <p class="description mt-3">buddyplan makes planning big projects a breeze, whether it's for a birthday, a movie recording or company meetings. No more scheduling hassle.</p><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-lift--hover shadow border-0">
+              <div class="card-body py-5">
+                <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
+                  <i class="fa fa-paw"></i>
+                </div>
+                <h6 class="text-success text-uppercase">Watchdogs</h6>
+                <p class="description mt-3">Keep track of weather conditions, locations and other factors by using watchdogs. Each watchdog acts as an agent which checks various conditions surrounding your schedule.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card card-lift--hover shadow border-0">
+              <div class="card-body py-5">
+                <div class="icon icon-shape icon-shape-warning rounded-circle mb-4">
+                  <i class="fa fa-file-pdf-o"></i>
+                </div>
+                <h6 class="text-warning text-uppercase">Reportings</h6>
+                <p class="description mt-3">Get automatic reportings about your schedule in case you miss anything. The best thing? Reportings work on their own without any interaction required and are emailed directly to your inbox.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section-white section-lg">
+  <div class="container">
+    <div class="row row-grid align-items-center">
+      <div class="col-md-6 order-md-2">
+        <%= image_tag :promo_1, class: "img-fluid floating" %>
+      </div>
+      <div class="col-md-6 order-md-0">
+        <div class="pr-md-5">
+          <div class="icon icon-lg icon-shape icon-shape-primary shadow rounded-circle mb-5">
+            <i class="fa fa-rocket"></i>
+          </div>
+          <h3 class="logo-text">How it works</h3>
+          <p>Sign up for a buddyplan.net account and create your first project, then follow the list below.</p>
+          <ul class="list-unstyled mt-5">
+            <li class="py-2">
+              <div class="d-flex align-items-center">
+                <div>
+                  <div class="badge badge-circle badge-primary mr-3">
+                    <i class="fa fa-user"></i>
+                  </div>
+                </div>
+                <div>
+                  <h6 class="mb-0">Add participants or members of your project</h6>
+                </div>
+              </div>
+            </li>
+            <li class="py-2">
+              <div class="d-flex align-items-center">
+                <div>
+                  <div class="badge badge-circle badge-primary mr-3">
+                    <i class="fa fa-tasks"></i>
+                  </div>
+                </div>
+                <div>
+                  <h6 class="mb-0">Associate each user with a role, job or task</h6>
+                </div>
+              </div>
+            </li>
+            <li class="py-2">
+              <div class="d-flex align-items-center">
+                <div>
+                  <div class="badge badge-circle badge-primary mr-3">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+                <div>
+                  <h6 class="mb-0">Geenrate your own personal schedule</h6>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ">
+  <div class="container">
+    <div class="row row-grid align-items-center">
+      <div class="col-md-6">
+        <div class="card bg-default shadow border-0">
+          <blockquote class="card-blockquote">
+            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="svg-bg">
+              <polygon points="0,52 583,95 0,95" class="fill-default"></polygon>
+              <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default"></polygon>
+            </svg>
+            <h4 class="display-4 font-weight-bold logo-text text-white">Free<br> as in "free beer"</h4>
+            <p class="lead text-italic text-white">While we're still running on low cost servers each buddyplan project is free of charge.</p>
+            <p class="lead text-italic text-white">Each project can deploy 2 watchdogs, each additional watchdog is charged accordingly.</p>
+          </blockquote>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pl-md-5">
+          <div class="icon icon-lg icon-shape icon-shape-primary shadow rounded-circle mb-5">
+            <i class="fa fa-question"></i>
+          </div>
+          <h3 class="logo-text">Why buddyplan?</h3>
+          <p class="">While there are dozens of applications and standards out there which try to make scheduling more easy for the average person, many of these tools suffer one massive problem, they are all designed to solve each individual's problem and therefore grow in size and complexity.</p>
+          <p class="">
+            buddyplan focuses on scheduling only, with an intuitive approach. We utilise watchdogs to assist you in creating your personal schedule.
+            We also focus primarily on generating schedules for movie recordings or trips, nothing more. <br>
+            No todo lists, no chat, no extreme budgeting, no chaos.
+          </p>
+          <a href="#" class="font-weight-bold text-primary mt-5">Compare Buddyplan with BaseCamp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pb-0 bg-gradient-primary">
+  <div class="container">
+    <div class="row row-grid align-items-center">
+      <div class="col-md-6 order-lg-2 ml-lg-auto">
+        <div class="position-relative pl-md-5">
+          <%= image_tag "promo_2", class: "img-center img-fluid floating" %>
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-1 pb-5">
+        <div class="d-flex px-3">
+          <div>
+            <div class="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
+              <i class="fa fa-star text-primary"></i>
+            </div>
+          </div>
+          <div class="pl-4">
+            <h4 class="display-5 text-white logo-text">Minimalistic on purpose</h4>
+            <p class="text-white">Our aim is to make planning simple, therefore we try to add as few overhead as possible. We extracted most of the heavy lifting into watchdogs so our interface stays slim and flexible.</p>
+          </div>
+        </div>
+        <div class="card shadow shadow-lg--hover mt-5">
+          <div class="card-body">
+            <div class="d-flex px-3">
+              <div>
+                <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
+                  <i class="fa fa-paw"></i>
+                </div>
+              </div>
+              <div class="pl-4">
+                <h5 class="title text-primary">Watchdogs</h5>
+                <p>A watchdog is like an agent which checks various surroundings of your project like weather conditions, rides, inventories etc.</p>
+                <a href="#" class="text-primary">Learn more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card shadow shadow-lg--hover mt-5">
+          <div class="card-body">
+            <div class="d-flex px-3">
+              <div>
+                <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                  <i class="fa fa-github"></i>
+                </div>
+              </div>
+              <div class="pl-4">
+                <h5 class="title text-warning">Open Source</h5>
+                <p>You can find the complete source of <span class="logo-text">buddyplan.net</span> on GitHub. Feel free to explore! Pull requests are very much welcomed.</p>
+                <a href="https://github.com/posixpascal/buddyplan.net" class="text-warning">Learn more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SVG separator -->
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
 

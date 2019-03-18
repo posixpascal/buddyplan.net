@@ -19,12 +19,10 @@
 // Core
 @import "./bootstrap/functions";
 @import "./bootstrap/mixins";
-@import "./bootstrap/variables";
 @import "bootstrap/functions";
 @import "custom/functions";
-
-@import "custom/variables";
 @import "bootstrap/variables";
+@import "custom/variables";
 
 @import "bootstrap/mixins";
 @import "custom/mixins";

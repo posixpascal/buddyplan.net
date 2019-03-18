@@ -4,10 +4,19 @@ body {
   background:#f1f1f1;
   font-family: 'Roboto', sans-serif;
 }
-
+.separator polygon.fill-white {
+  fill: #f1f1f1;
+}
 .logo-text {
   font-family: 'Roboto Slab', serif;
   font-weight: bold;
+}
+
+.fake-checkbox {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  background-color: #ddd;
 }
 
 .lead-icon {

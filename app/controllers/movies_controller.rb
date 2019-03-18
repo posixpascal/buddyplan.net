@@ -26,9 +26,20 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
+    @schedule = Schedule.new
+    @movie.schedule = @schedule
 
     respond_to do |format|
       if @movie.save
+        # TODO: I have some DB inconsistencies here.
+        @schedule.movie_id = @movie.id
+        @schedule.save
+        @movie.schedule_id = @schedule.id
+        @movie.save
+
+        current_user.add_role :admin, @movie
+        current_user.add_role :moderate, @movie
+
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else

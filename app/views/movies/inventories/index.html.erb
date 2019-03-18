@@ -18,7 +18,7 @@ end
       <th>Name</th>
       <th>Type</th>
       <th>Items</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
     </thead>
     <tbody>
@@ -32,6 +32,7 @@ end
         <th>
           <%= inventory.items.count %>
         </th>
+        <td><%= link_to 'Print', print_movie_inventory_path(@movie, inventory) %></td>
         <td><%= link_to 'Show', movie_inventory_path(@movie, inventory) %></td>
         <td><%= link_to 'Edit', edit_movie_inventory_path(@movie, inventory) %></td>
         <td><%= link_to 'Destroy', movie_inventory_path(@movie, inventory), method: :delete, data: { confirm: 'Are you sure?' } %></td>

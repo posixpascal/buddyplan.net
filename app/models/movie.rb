@@ -12,7 +12,7 @@ class Movie < ApplicationRecord
   has_many :simulations, dependent: :destroy
   has_many :roles, dependent: :destroy
   has_many :movie_money_transfers
-  belongs_to :schedule
+  has_one :schedule, dependent: :destroy
 
   def superadmin
     User.find(user_id)

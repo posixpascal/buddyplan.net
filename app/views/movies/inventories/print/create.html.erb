@@ -1,0 +1,25 @@
+<%= content_for :title do %><%= @inventory.name  %><% end %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inventory.items.each do |item| %>
+    <tr valign="center">
+      <td width="1">
+        <%= image_tag "unchecked_checkbox", height: 25, style: "filter:grayscale(1.0)" %>
+      </td>
+      <td valign="middle"><%= item.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+      window.print();
+  });
+</script>

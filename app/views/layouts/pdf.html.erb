@@ -21,7 +21,7 @@
       <div class="pt-5">
         <%= content_for :breadcrumbs %>
         <div class=" content-wrapper">
-          <div class="content-wrapper-title"><div>Schedule for <strong><%= @movie.title %></strong></div></div>
+          <div class="content-wrapper-title"><%= content_for :title %></div>
           <%= yield %>
         </div>
         <br><br>

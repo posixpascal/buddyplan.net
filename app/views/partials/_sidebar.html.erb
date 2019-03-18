@@ -1,4 +1,4 @@
-<% if @movie %>
+<% if @movie and @movie.id %>
   <%= render partial: "movies/sidebar" %>
 <% else %>
   <%= content_for :sidebar %>

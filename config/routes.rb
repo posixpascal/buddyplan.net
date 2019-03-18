@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :movies do
+    namespace :inventories do
+      get 'print/create'
+    end
+  end
   get 'account/index'
   get 'pricing/index'
   authenticate :user, ->(u) { u.id } do
@@ -40,6 +45,9 @@ Rails.application.routes.draw do
 
     resources :inventories, controller: "movies/inventories" do
       resources :items, controller: "movies/inventories/items"
+      member do
+        get "/print", to: "movies/inventories/print#create"
+      end
     end
 
     resource :budget, controller: "movies/budget" do
