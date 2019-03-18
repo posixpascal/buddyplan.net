@@ -39,3 +39,11 @@ set :keep_releases, 2
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 set :deploy_to, "/var/www/buddyplan"
+  on roles(:app) do
+    task :assets do
+      execute "cd #{release_path}; rake assets:precompile"
+    end
+
+
+after :deploy, :'assets'
+after :deploy, :'passenger:restart'
