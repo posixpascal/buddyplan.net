@@ -5,3 +5,59 @@ end
 <%= content_for :title do %>
   <%= @car.name %>
 <% end %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <strong>Owner</strong>
+    <p class="text-muted"><%= @car.actor&.firstname %> <%= @car.actor&.lastname %></p>
+  </div>
+  <div class="col-sm-6">
+    <div class="col-sm-6">
+      <strong>License Plate</strong>
+      <p class="text-muted"><%= @car.license_plate %></p>
+    </div>
+  </div>
+</div>
+
+<hr>
+<strong>Fares</strong>
+<p class="text-muted">This vehicle is used in the following fares</p>
+  <div class="col-xs-12 table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Time</th>
+        <th>Driver & Passengers</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Estimate</th>
+      </tr>
+      </thead>
+      <% @movie.schedule.schedule_events.where(schedulable_type: "RideEvent").each do |ride_event| %>
+        <tr>
+          <td>
+            <%= ride_event.schedulable.scheduled_on.strftime("%A, %d.%m %H:%M") %>
+          </td>
+          <td>
+            <% ride_event.event_participants.each do |ep| %>
+              <div>
+          <span class="badge badge-<%= 'success' if ep.role&.name&.downcase.to_s == "driver" %> badge-<%= 'primary' if ep.role&.name&.downcase.to_s != "driver" %>">
+            <%= ep.actor&.firstname %> <%= ep.actor&.lastname %>
+          </span>
+              </div>
+            <% end %>
+            <small class="text-muted">Driver is emphasized</small>
+          </td>
+          <td>
+            <%= ride_event.current_car_location&.name %>
+          </td>
+          <td>
+            <%= ride_event.schedulable.location&.name %>
+          </td>
+          <td>
+            <%= ride_event.schedulable.estimate %>min
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>

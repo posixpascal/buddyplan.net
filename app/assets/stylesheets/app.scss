@@ -156,11 +156,16 @@ hr {
   font-weight: bold;
 }
 
-.schedule-table tr {
+.schedule-table tr.event-row {
   opacity: 0.5;
 }
 
-.schedule-table tr.relevant {
+.schedule-table.hide-irrelevant tr.event-row:not(.relevant) {
+  display: none;
+}
+
+
+.schedule-table tr.event-row.relevant {
   opacity: 1.0;
 }
 
@@ -215,4 +220,52 @@ div.emphasized {
 .scheduled-day {
   font-size: 32px;
   font-family: "Roboto Slab", sans-serif;
+}
+.breadcrumb-nav {
+  background: #fff;
+
+}
+.breadcrumbs {
+  display: flex;
+  color: #fff;
+}
+.breadcrumbs .breadcrumb-nav-item {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+}
+
+.breadcrumbs .breadcrumb-nav-item-arrow:nth-child(n + 1){
+  margin-right: -20px;
+}
+
+$loopcolor: darken(#f1f1f1, 30%);
+@for $i from 1 through 8 {
+  $loopcolor: lighten($loopcolor, $i);
+
+  .breadcrumbs .breadcrumb-nav-item:not(.breadcrumb-nav-item-arrow):nth-child(#{$i}), .breadcrumbs .breadcrumb-nav-item:nth-child(#{$i + 1}) {
+    border-color: transparent transparent transparent rgba($loopcolor, 0.5);
+  }
+}
+
+.breadcrumbs .breadcrumb-nav-item-arrow {
+  display:flex;
+  width: 0;
+  height: 0;
+  position: relative;
+  border-style: solid;
+  border-width: 25px 0 25px 15px;
+}
+
+.breadcrumbs .breadcrumb-nav-item-arrow:before {
+  content: "";
+  position: absolute;
+  display:flex;
+  width: 0;
+  left:-15px;
+  top: -24px;
+  height: 0;
+  border-style: solid;
+  border-width: 24px 0 24px 14px;
+  border-color: transparent transparent transparent #fff;
 }

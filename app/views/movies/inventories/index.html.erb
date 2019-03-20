@@ -12,34 +12,36 @@ end
 <% end %>
 
 <% if @inventories.size > 0 %>
-  <table class="table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Items</th>
-      <th colspan="4"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @inventories.each do |inventory| %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
       <tr>
-        <td><%= inventory.name %></td>
-        <td>
-          <i class="fa fa-<%= Inventory::ICONS[inventory.inventory_type&.to_sym] %>"></i>
-          <%= inventory.inventory_type&.titleize %>
-          </td>
-        <th>
-          <%= inventory.items.count %>
-        </th>
-        <td><%= link_to 'Print', print_movie_inventory_path(@movie, inventory) %></td>
-        <td><%= link_to 'Show', movie_inventory_path(@movie, inventory) %></td>
-        <td><%= link_to 'Edit', edit_movie_inventory_path(@movie, inventory) %></td>
-        <td><%= link_to 'Destroy', movie_inventory_path(@movie, inventory), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Items</th>
+        <th colspan="4"></th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td><%= inventory.name %></td>
+          <td>
+            <i class="fa fa-<%= Inventory::ICONS[inventory.inventory_type&.to_sym] %>"></i>
+            <%= inventory.inventory_type&.titleize %>
+          </td>
+          <th>
+            <%= inventory.items.count %>
+          </th>
+          <td><%= link_to 'Print', print_movie_inventory_path(@movie, inventory) %></td>
+          <td><%= link_to 'Show', movie_inventory_path(@movie, inventory) %></td>
+          <td><%= link_to 'Edit', edit_movie_inventory_path(@movie, inventory) %></td>
+          <td><%= link_to 'Destroy', movie_inventory_path(@movie, inventory), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
 
 <div class="content-wrapper-footer">

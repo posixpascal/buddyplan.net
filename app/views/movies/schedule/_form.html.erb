@@ -47,10 +47,12 @@
         <div class="sortable-list">
           <% @schedule.events_at(schedule_day).each do |event|
             next if event.schedulable_id.nil?
+            cache event do
             @event = event
  %>
 
             <%= render partial: event.schedulable_type.underscore %>
+          <% end %>
           <% end %>
         </div>
         <div>

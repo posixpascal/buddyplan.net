@@ -12,32 +12,38 @@ end
 <% end %>
 
 <% if @locations.size > 0 %>
-  <table class="table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Weather</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @locations.each do |location| %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
       <tr>
-        <td><%= location.name %></td>
-        <td valign="middle">
-          <% if location.last_weather_conditions %>
-            <div> <%= (location.last_weather_conditions["currently"]['temperature']).round %>° <%= image_tag location.last_weather_conditions['currently']['icon'], height: 20, style: "position:relative;top:-2px" %> <br><small><%= location.last_weather_conditions['currently']['summary']  %></small></div>
-          <% else %>
-            <span class="badge badge-default">No results</span>
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', movie_location_path(@movie, location) %></td>
-        <td><%= link_to 'Edit', edit_movie_location_path(@movie, location) %></td>
-        <td><%= link_to 'Destroy', movie_location_path(@movie, location), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Weather</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+          <td><%= location.name %></td>
+          <td valign="middle">
+            <% if location.last_weather_conditions %>
+              <div> <%= (location.last_weather_conditions["currently"]['temperature']).round %>
+                ° <%= image_tag location.last_weather_conditions['currently']['icon'], height: 20, style: "position:relative;top:-2px" %>
+                <br>
+                <small><%= location.last_weather_conditions['currently']['summary'] %></small>
+              </div>
+            <% else %>
+              <span class="badge badge-default">No results</span>
+            <% end %>
+          </td>
+          <td><%= link_to 'Show', movie_location_path(@movie, location) %></td>
+          <td><%= link_to 'Edit', edit_movie_location_path(@movie, location) %></td>
+          <td><%= link_to 'Destroy', movie_location_path(@movie, location), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
 
 <div class="content-wrapper-footer">

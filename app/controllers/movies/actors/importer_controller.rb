@@ -1,7 +1,7 @@
 class Movies::Actors::ImporterController < ApplicationController
   before_action :authenticate_user!
   before_action :set_movie
-  before_action :set_contact_entry, only: [:new, :show, :create]
+  before_action :set_contact_entry, only: [:new, :show, :create, :destroy]
   before_action :set_fields
 
   def index
@@ -21,6 +21,13 @@ class Movies::Actors::ImporterController < ApplicationController
   end
 
   def show
+
+  end
+
+  def destroy
+    @contact_entry.destroy
+    flash[:success] = "Contact Submission deleted"
+    return redirect_to importer_movie_actors_path(@movie)
 
   end
 

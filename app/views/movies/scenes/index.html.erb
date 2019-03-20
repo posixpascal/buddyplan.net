@@ -1,9 +1,9 @@
 <%= content_for :breadcrumbs do
-  breadcrumbs([[movie_path(@movie), @movie.title], [movie_scenes_path(@movie), "scenes"]])
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_scenes_path(@movie), "Scenes"]])
 end
 %>
 <%= content_for :title do %>
-  scenes
+  Scenes
 <% end %>
 
 
@@ -12,25 +12,27 @@ end
 <% end %>
 
 <% if @scenes.size > 0 %>
-  <table class="table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @scenes.each do |scene| %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
       <tr>
-        <td><%= scene.name %></td>
-        <td><%= link_to 'Print', print_movie_scene_path(@movie, scene) %></td>
-        <td><%= link_to 'Show', movie_scene_path(@movie, scene) %></td>
-        <td><%= link_to 'Edit', edit_movie_scene_path(@movie, scene) %></td>
-        <td><%= link_to 'Destroy', movie_scene_path(@movie, scene), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th colspan="4"></th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @scenes.each do |scene| %>
+        <tr>
+          <td><%= scene.name %></td>
+          <td><%= link_to 'Print', print_movie_scene_path(@movie, scene) %></td>
+          <td><%= link_to 'Show', movie_scene_path(@movie, scene) %></td>
+          <td><%= link_to 'Edit', edit_movie_scene_path(@movie, scene) %></td>
+          <td><%= link_to 'Destroy', movie_scene_path(@movie, scene), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
 
 <div class="content-wrapper-footer">

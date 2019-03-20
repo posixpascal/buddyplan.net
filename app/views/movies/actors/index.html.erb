@@ -14,38 +14,40 @@ end
 <% if @movie.actor_contact_entries.count %>
   <div class="alert alert-primary text-primary p-4">
     There are <%= @movie.actor_contact_entries.count %> contact submissions. Would you like to review them?<br><br>
-    <%= link_to "Review them", importer_movie_actors_path(@movie), class: "btn btn-primary"%>
+    <%= link_to "Review them", importer_movie_actors_path(@movie), class: "btn btn-primary" %>
   </div>
 <% end %>
 
 <% if @actors.size %>
-  <table class="table table-striped table-bordered">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="4"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @actors.each do |actor| %>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
       <tr>
-        <td><%= actor.firstname %> <%= actor.lastname %></td>
-        <td><%= link_to 'Schedule', actor_movie_schedule_path(@movie, actor) %></td>
-        <td><%= link_to 'Show', movie_actor_path(@movie, actor) %></td>
-        <td><%= link_to 'Edit', edit_movie_actor_path(@movie, actor) %></td>
-        <td><%= link_to 'Destroy', movie_actor_path(@movie, actor), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th colspan="4"></th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+      <% @actors.each do |actor| %>
+        <tr>
+          <td><%= actor.firstname %> <%= actor.lastname %></td>
+          <td><%= link_to 'Schedule', actor_movie_schedule_path(@movie, actor) %></td>
+          <td><%= link_to 'Show', movie_actor_path(@movie, actor) %></td>
+          <td><%= link_to 'Edit', edit_movie_actor_path(@movie, actor) %></td>
+          <td><%= link_to 'Destroy', movie_actor_path(@movie, actor), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
 <% end %>
+</div>
 <div class="svg-box text-center p-3">
-<%= raw @qrcode.as_svg(offset: 0, color: '000',
-                       shape_rendering: 'crispEdges',
-                       module_size: 4) %>
-<br><br>
+  <%= raw @qrcode.as_svg(offset: 0, color: '000',
+                         shape_rendering: 'crispEdges',
+                         module_size: 4) %>
+  <br><br>
   <p>You can collect personal information using the following URL or QR code
-  <code><%= @collect_info_url %></code></p>
+    <code><%= @collect_info_url %></code></p>
 </div>
 
 <div class="content-wrapper-footer">

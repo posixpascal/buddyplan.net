@@ -25,12 +25,14 @@ module ApplicationHelper
   def small_icon(icon_name, opts = {height: 20})
     raw image_tag(icon_name, opts)
   end
+
   # (@location.last_weather_conditions["currently"]['temperature']).round %>° <%= image_tag @location.last_weather_conditions['currently']['icon'], height: 20, style: "position:relative;top:-2px" %>
   # <%= @location.last_weather_conditions['currently']['summary']
   def weather_for location
     return "" unless location and location.lat and location.lng
     raw "#{(location.last_weather_conditions["currently"]['temperature']).round}° " + image_tag(location.last_weather_conditions['currently']['icon'], height: 20, style: "position:relative;top:-2px")
   end
+
   def gmaps_link_for location
     return "" unless location and location.lat and location.lng
     raw "<a target='_blank' href='https://www.google.de/maps/place/BuddyPlan/@#{location.lat},#{location.lng},19z'>Google Maps</a>"
@@ -43,6 +45,14 @@ module ApplicationHelper
     end
 
     raw out.join("")
+  end
+
+  def file_type_icon_for ext
+    if ["png", "doc", "docx", "pdf", "xlsx", "xls", "jpg", "jpeg"].include? ext
+      return raw image_tag "file_" + ext, height: 20
+    end
+
+    return raw image_tag "file_generic", height: 20
   end
 
   def empty_resource(klass, opts)
@@ -69,12 +79,13 @@ module ApplicationHelper
 
   def breadcrumbs crumbs
     crumbs = crumbs.map do |group|
-        "<li class='breadcrumb-item'><a href='#{group[0]}'>#{group[1]}</a></li>"
-  end.join("")
-    raw "<nav aria-label='breadcrumb'>
-    <ol class='breadcrumb'>
+      "<div class='breadcrumb-nav-item'><a href='#{group[0]}'>#{group[1]}</a></div>"
+    end.join("<div class='breadcrumb-nav-item breadcrumb-nav-item-arrow'></div>")
+    raw "<nav aria-label='breadcrumb' class='breadcrumb-nav'><div class='container'>
+    <div class='breadcrumbs'>
       #{crumbs}
-    </ol></div>"
+    </div></div></nav>"
 
   end
+
 end

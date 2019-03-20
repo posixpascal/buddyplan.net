@@ -1,105 +1,111 @@
-<p><%= @movie.title %> is scheduled between <strong class="lead-text"><%= @movie.schedule.scheduled_from.strftime("%A, %d.%m.%Y") %></strong>
+<p><%= @movie.title %> is scheduled between
+  <strong class="lead-text"><%= @movie.schedule.scheduled_from.strftime("%A, %d.%m.%Y") %></strong>
   and <strong class="lead-text"><%= @movie.schedule.scheduled_to.strftime("%A, %d.%m.%Y") %></strong>.</p>
-<div style="height: 50px"></div>
+
+<center><a href="#" onclick="$('table').toggleClass('hide-irrelevant'); return false">View/Hide irrelevant events</a></center>
+<hr>
+
+<h3 class="text-center logo-text scheduled-day"><br><%= @actor.firstname %> <%= @actor.lastname %></h3>
 <% @movie.schedule.schedule_days.each do |date| %>
-  <h4 class="text-center scheduled-day"><%= date.strftime("%A, %d.%m.%Y") %></h4>
+  <h4 class="text-center scheduled-day"><%= date.strftime("%A, %d.%m.%Y") %><br><br></h4>
   <div class="table-responsive">
-  <table class="table table-bordered schedule-table">
-    <thead>
-    <tr>
-      <th>Wann</th>
-      <th>Aktion</th>
-      <th>Wer</th>
-      <th>Als</th>
-      <th>Beschreibung</th>
-      <th>Ort</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @movie.schedule.events_at(date).each do |event|
-      next if event.schedulable_id.nil?
-      @event = event
+    <table class="table table-bordered schedule-table">
+      <thead>
+      <tr>
+        <th>Wann</th>
+        <th>Aktion</th>
+        <th>Wer</th>
+        <th>Als</th>
+        <th>Beschreibung</th>
+        <th>Ort</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @movie.schedule.events_at(date).each do |event|
+        next if event.schedulable_id.nil?
+        @event = event
 %>
-      <tr class="<%= 'relevant' if event.relevant_for? @actor %>">
-        <td width="10">
-          <%= event.schedulable.scheduled_on&.strftime("%H:%M") %>
-          <small class="badge badge-info"><i class="fa fa-hourglass-1"></i> <%= event.schedulable.estimate %>min</small>
+        <tr class="event-row <%= 'relevant' if event.relevant_for? @actor %>">
+          <td width="10">
+            <%= event.schedulable.scheduled_on&.strftime("%H:%M") %>
+            <small class="badge badge-info"><i class="fa fa-hourglass-1"></i> <%= event.schedulable.estimate %>min
+            </small>
 
 
-        </td>
-        <td width="10" valign="middle" align="center">
-          <% if event.schedulable.is_a? RideEvent %>
-            <%= small_icon("car") %>
-          <% elsif event.schedulable.is_a? BreakEvent %>
-            <%= small_icon("clock-o") %>
-          <% elsif event.schedulable.is_a? ActionEvent %>
-            <%= small_icon("task") %>
-          <% elsif event.schedulable.is_a? ShootEvent %>
-            <%= small_icon("camera") %>
-          <% else %>
-          <% end %>
-        </td>
-        <td width="20">
-          <% event.event_participants.each do |ep| %>
-            <div><span class="badge badge-default <%= 'emphasized' if ep.actor.id == @actor.id %>">
+          </td>
+          <td width="10" valign="middle" align="center">
+            <% if event.schedulable.is_a? RideEvent %>
+              <%= small_icon("car") %>
+            <% elsif event.schedulable.is_a? BreakEvent %>
+              <%= small_icon("clock-o") %>
+            <% elsif event.schedulable.is_a? ActionEvent %>
+              <%= small_icon("task") %>
+            <% elsif event.schedulable.is_a? ShootEvent %>
+              <%= small_icon("camera") %>
+            <% else %>
+            <% end %>
+          </td>
+          <td width="20">
+            <% event.event_participants.each do |ep| %>
+              <div><span class="badge badge-default <%= 'emphasized' if ep.actor.id == @actor.id %>">
               <%= ep.actor.firstname %> <%= ep.actor.lastname %>
             </span>
-            </div>
-          <% end %>
-        </td>
-        <td width="33">
-          <% event.event_participants.each do |ep| %>
-            <div>
-              <% if ep.role&.name&.downcase == "driver" %>
-                <span class="badge badge-success"><i class="fa fa-car"></i> Driver</span>
-              <% elsif ep.role&.name&.downcase == "passenger" %>
-                <span class="badge badge-danger"><i class="fa fa-car"></i> Passenger</span>
-              <% else %>
-                <% if ep.role&.name %>
-                  <span class="badge badge-primary"><i class="fa fa-asterisk"></i> <%= ep.role&.name %></span>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        </td>
-        <td>
-          <% if event.schedulable.is_a? RideEvent %>
-            <div class="">
-              <strong>Auto: <span class="badge badge-success"><%= event.schedulable&.car&.name %></span><br></strong>
-              <p class="text-muted"><%= "Bitte findet euch rechtzeitig in der links aufgeführten Gruppenformation wieder." %></p>
-
-            </div>
-          <% end %>
-
-          <% if event.schedulable.is_a? ShootEvent %>
-            <% if event.schedulable.scene %>
-              <%= small_icon("scene") %> <%= event.schedulable.scene.name %>
-              <p class="text-muted">
-                <%= event.schedulable.scene.description %></p>
-              <div class="d-flex justify-content-between">
-                <%= link_to "Inventory List", movie_scene_path(@movie, event.schedulable.scene) %>
-                <%= link_to "", movie_scene_path(@movie, event.schedulable.scene) %>
               </div>
             <% end %>
-          <% end %>
+          </td>
+          <td width="33">
+            <% event.event_participants.each do |ep| %>
+              <div>
+                <% if ep.role&.name&.downcase == "driver" %>
+                  <span class="badge badge-success"><i class="fa fa-car"></i> Driver</span>
+                <% elsif ep.role&.name&.downcase == "passenger" %>
+                  <span class="badge badge-danger"><i class="fa fa-car"></i> Passenger</span>
+                <% else %>
+                  <% if ep.role&.name %>
+                    <span class="badge badge-primary"><i class="fa fa-asterisk"></i> <%= ep.role&.name %></span>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <% if event.schedulable.is_a? RideEvent %>
+              <div class="">
+                <strong>Auto: <span class="badge badge-success"><%= event.schedulable&.car&.name %></span><br></strong>
+                <p class="text-muted"><%= "Bitte findet euch rechtzeitig in der links aufgeführten Gruppenformation wieder." %></p>
 
-          <% if event.schedulable.is_a? ActionEvent %>
-            <div class="">
-              <%= event.schedulable.action_type %>
-              <p class="text-muted"><%= event.schedulable.notes %></p>
-            </div>
-          <% end %>
-        </td>
-        <td>
-          <% if event.schedulable.location %>
-            <%= event.schedulable&.location&.name %> (<%= weather_for event.schedulable&.location %>)<br>
-            <%= gmaps_link_for event.schedulable&.location %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+              </div>
+            <% end %>
+
+            <% if event.schedulable.is_a? ShootEvent %>
+              <% if event.schedulable.scene %>
+                <%= small_icon("scene") %> <%= event.schedulable.scene.name %>
+                <p class="text-muted">
+                  <%= event.schedulable.scene.description %></p>
+                <div class="d-flex justify-content-between">
+                  <%= link_to "Inventory List", print_movie_scene_path(@movie, event.schedulable.scene) %>
+                  <%= link_to "", movie_scene_path(@movie, event.schedulable.scene) %>
+                </div>
+              <% end %>
+            <% end %>
+
+            <% if event.schedulable.is_a? ActionEvent %>
+              <div class="">
+                <%= event.schedulable.action_type %>
+                <p class="text-muted"><%= event.schedulable.notes %></p>
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <% if event.schedulable.location %>
+              <%= event.schedulable&.location&.name %> (<%= weather_for event.schedulable&.location %>)<br>
+              <%= gmaps_link_for event.schedulable&.location %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
   <br>
   <hr>
@@ -112,8 +118,8 @@
 <% @movie.actors.all.in_groups_of(3).each do |group| %>
   <div class="row mb-5">
     <% group.each do |actor|
-      next unless actor
-          %>
+  next unless actor
+ %>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -133,8 +139,8 @@
 <% @movie.cars.all.in_groups_of(3).each do |group| %>
   <div class="row mb-5">
     <% group.each do |car|
-      next unless car
-    %>
+  next unless car
+ %>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="card" style="width: 18rem;">
           <div class="card-body">

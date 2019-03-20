@@ -1,5 +1,5 @@
 <%= content_for :breadcrumbs do
-  breadcrumbs([[movie_path(@movie), @movie.title], [movie_documents_path(@movie), "Locations"]])
+  breadcrumbs([[movie_path(@movie), @movie.title], [movie_documents_path(@movie), "Documents"]])
 end
 %>
 <%= content_for :title do %>
@@ -13,9 +13,11 @@ end
 
 <strong class="logo-text">Documents</strong>
 <% if @documents.count > 0 %>
+  <div class="table-responsive">
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
       <th>URL</th>
       <th colspan="2"></th>
@@ -23,9 +25,12 @@ end
   </thead>
   <tbody>
     <% @documents.each do |document| %>
-    <tr>
+    <tr valign="center">
       <td>
-        <%= document.id %>
+        <%= file_type_icon_for document.file.filename.extension %>
+      </td>
+      <td>
+        <%= document.file.filename %>
       </td>
       <td>
         <code><%= shorten_url "/movies/#{@movie.id}/documents/#{document.id}/download" %></code>
@@ -40,6 +45,7 @@ end
     <% end %>
   </tbody>
 </table>
+  </div>
 <% else %>
   <p class="text-muted">No documents found for this project.</p>
 <% end %>
