@@ -1,0 +1,2 @@
+class Watchdog < ApplicationRecord
+end
