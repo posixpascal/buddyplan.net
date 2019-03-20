@@ -1,2 +1,40 @@
-<%= content_for :title do %>Pricing<% end %>
-Buddyplan is free to use.
+<%= content_for :title do %>Pricing
+<% end %>
+<section class="section pb-150 bg-gradient-default">
+  <div class="container">
+    <div class="row row-grid align-items-center">
+      <div class="col-md-12 ml-lg-auto">
+        <div class="panel pricing-table">
+          <div class="pricing-plan">
+            <img src="<%= asset_url "leaf" %>" alt="" class="pricing-img">
+            <h2 class="pricing-header logo-text">Free</h2>
+            <ul class="pricing-features">
+              <li class="pricing-features-item">Complete set of features</li>
+              <li class="pricing-features-item">+ 2 free watchdogs</li>
+            </ul>
+            <span class="pricing-price"><br>Free<br></span>
+            <a href="<%= new_user_registration_path %>" class="btn btn-large btn-primary btn-lg btn-outline-primary mt-5">Sign up</a>
+          </div>
+
+          <div class="pricing-plan">
+            <img src="<%= asset_url "tree" %>" alt="" class="pricing-img">
+            <h2 class="pricing-header logo-text">COMMERCIALLY</h2>
+            <ul class="pricing-features">
+              <li class="pricing-features-item">Complete set of features</li>
+              <li class="pricing-features-item">+ 2 free watchdogs</li>
+            </ul>
+            <span class="pricing-price">3,99 €  <br><small>monthly per watchdog</small>
+</span>
+            <a href="<%= new_user_registration_path %>" class="btn  btn-lg mt-5 btn-primary is-featured">Free trial</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- SVG separator -->
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</section>
+

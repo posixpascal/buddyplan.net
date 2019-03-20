@@ -11,6 +11,13 @@ end
   <%= empty_resource Actor, cta: new_movie_actor_path %>
 <% end %>
 
+<% if @movie.actor_contact_entries.count %>
+  <div class="alert alert-primary text-primary p-4">
+    There are <%= @movie.actor_contact_entries.count %> contact submissions. Would you like to review them?<br><br>
+    <%= link_to "Review them", importer_movie_actors_path(@movie), class: "btn btn-primary"%>
+  </div>
+<% end %>
+
 <% if @actors.size %>
   <table class="table table-striped table-bordered">
     <thead>

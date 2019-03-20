@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_17_003508) do
+ActiveRecord::Schema.define(version: 2019_03_20_101950) do
 
   create_table "action_events", force: :cascade do |t|
     t.integer "schedule_id"
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 2019_03_17_003508) do
     t.string "lastname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "street"
+    t.string "location"
+    t.string "city"
+    t.string "postalcode"
+    t.text "allergenes"
+    t.string "phonenumber"
     t.index ["movie_id"], name: "index_actors_on_movie_id"
     t.index ["user_id"], name: "index_actors_on_user_id"
   end
@@ -390,6 +397,7 @@ ActiveRecord::Schema.define(version: 2019_03_17_003508) do
     t.string "invited_by_type"
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.integer "watchdog_credits"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
@@ -404,6 +412,16 @@ ActiveRecord::Schema.define(version: 2019_03_17_003508) do
     t.index ["permission_id"], name: "index_users_permissions_on_permission_id"
     t.index ["user_id", "permission_id"], name: "index_users_permissions_on_user_id_and_permission_id"
     t.index ["user_id"], name: "index_users_permissions_on_user_id"
+  end
+
+  create_table "watchdogs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.string "watchdog_type"
+    t.text "data"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

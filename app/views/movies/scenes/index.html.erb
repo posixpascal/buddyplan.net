@@ -23,6 +23,7 @@ end
     <% @scenes.each do |scene| %>
       <tr>
         <td><%= scene.name %></td>
+        <td><%= link_to 'Print', print_movie_scene_path(@movie, scene) %></td>
         <td><%= link_to 'Show', movie_scene_path(@movie, scene) %></td>
         <td><%= link_to 'Edit', edit_movie_scene_path(@movie, scene) %></td>
         <td><%= link_to 'Destroy', movie_scene_path(@movie, scene), method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -26,7 +26,58 @@
     </div>
   </div>
 
-    <div class="content-wrapper-footer">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :phonenumber %>
+        <%= form.text_field :phonenumber, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :street %>
+        <%= form.text_field :street, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :postalcode %>
+        <%= form.text_field :postalcode, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= form.label :city %>
+        <%= form.text_field :city, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= form.label :allergenes %>
+        <%= form.text_area :allergenes, class: "form-control", rows: 4 %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="content-wrapper-footer">
       <%= form.submit class: "btn btn-primary" %>
     </div>
 <% end %>

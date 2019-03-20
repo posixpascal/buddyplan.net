@@ -13,5 +13,6 @@
  *= require argon/argon
  *= require chosen
  *= require app
+ *= require pricing
  *= require_self
  */

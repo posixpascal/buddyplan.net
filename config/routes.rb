@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :movies do
+    namespace :scenes do
+      get 'print/create'
+    end
+  end
+  namespace :movies do
     namespace :inventories do
       get 'print/create'
     end
@@ -34,10 +39,16 @@ Rails.application.routes.draw do
       collection do
         get "/collect", to: "movies/actors/collector#show"
         post "/collect", to: "movies/actors/collector#create"
+        get "/importer", to: "movies/actors/importer#index", as: "importer"
       end
     end
+
     resources :locations, controller: "movies/locations"
-    resources :scenes, controller: "movies/scenes"
+    resources :scenes, controller: "movies/scenes" do
+      member do
+        get "/print", to: "movies/scenes/print#create"
+      end
+    end
     resources :roles, controller: "movies/roles"
     resources :casts, controller: "movies/casts"
     resources :cars, controller: "movies/cars"
