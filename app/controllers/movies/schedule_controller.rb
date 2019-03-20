@@ -2,7 +2,7 @@ class Movies::ScheduleController < ApplicationController
   before_action :set_movie
   before_action :set_schedule
   layout "pdf", only: :for_actor
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => :for_actor
   def for_actor
     @actor = @movie.actors.find(params[:actor_id])
   end

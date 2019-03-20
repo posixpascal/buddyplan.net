@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :movies do
+    namespace :schedule do
+      get 'list/index'
+    end
+  end
+  namespace :movies do
     namespace :scenes do
       get 'print/create'
     end
@@ -78,6 +83,7 @@ Rails.application.routes.draw do
       get "/actor/:actor_id", to: "movies/schedule#for_actor", as: "actor"
       get "/events/:event/:day", to: "movies/schedule/events#create", as: "schedule_event"
       post "/:schedule_id/sort", to: "movies/schedule/sort#create"
+      get "/list", to: "movies/schedule/list#index"
     end
 
     resources :schedule_events,  controller: "movies/schedule_events" do
