@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  get "/r/:shortlink_id/:shortlink_key", to: "shortlinks#show"
 
   devise_for :users
   root to: "home#index"
@@ -40,6 +40,10 @@ Rails.application.routes.draw do
         get "/collect", to: "movies/actors/collector#show"
         post "/collect", to: "movies/actors/collector#create"
         get "/importer", to: "movies/actors/importer#index", as: "importer"
+        delete "/importer/entry/:contact_entry_id", to: "movies/actors/importer#destroy", as: "delete_import_entry"
+        get "/importer/entry/:contact_entry_id", to: "movies/actors/importer#show", as: "view_contact_entry"
+        post "/importer/entry/:contact_entry_id", to: "movies/actors/importer#create", as: "import_contact_entry"
+        get "/importer/entry/:contact_entry_id/import", to: "movies/actors/importer#new", as: "new_import_entry"
       end
     end
 
@@ -52,7 +56,11 @@ Rails.application.routes.draw do
     resources :roles, controller: "movies/roles"
     resources :casts, controller: "movies/casts"
     resources :cars, controller: "movies/cars"
-    resources :documents, controller: "movies/documents"
+    resources :documents, controller: "movies/documents" do
+      member do
+        get "/download", to: "movies/documents/download#show"
+      end
+    end
 
     resources :inventories, controller: "movies/inventories" do
       resources :items, controller: "movies/inventories/items"

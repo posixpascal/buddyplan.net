@@ -1,6 +1,7 @@
 class Movies::ScheduleEvents::ShootEventsController < ApplicationController
   before_action :set_movie
   before_action :set_schedule_event
+  before_action :authenticate_user!
   before_action :set_shoot_event, only: [:edit, :update, :destroy]
   def create
     @schedule_event.schedulable = ShootEvent.create(shoot_event_params)

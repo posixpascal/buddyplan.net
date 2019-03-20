@@ -1,7 +1,7 @@
 class Movies::SimulationController < ApplicationController
   before_action :set_movie
   before_action :authenticate_user!
-
+  before_action :authenticate_user!
   def create
     @simulation = @movie.simulations.create(
                                         user_id: current_user.id,

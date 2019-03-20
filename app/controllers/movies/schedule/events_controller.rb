@@ -1,5 +1,6 @@
 class Movies::Schedule::EventsController < ApplicationController
   before_action :set_movie
+  before_action :authenticate_user!
   def create
     # TODO: sanitize
     @event = params[:event].constantize.new

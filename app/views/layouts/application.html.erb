@@ -41,7 +41,7 @@
         <div class=" content-wrapper">
           <div class="content-wrapper-title"><%= content_for :title %></div>
           <% flash.each do |key, value| %>
-            <div class="alert alert-<%= bootstrap_class_for_flash key %>">
+            <div class="alert alert-<%= bootstrap_class_for_flash key %> text-<%= bootstrap_class_for_flash key %>">
               <%= value %>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

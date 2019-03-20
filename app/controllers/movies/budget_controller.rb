@@ -1,5 +1,6 @@
 class Movies::BudgetController < ApplicationController
   before_action :set_movie
+  before_action :authenticate_user!
   def show
     @transfers = @movie.movie_money_transfers
     @current_balance = @transfers.where(:budget_type => "income").sum(:budget_amount) - @transfers.where(:budget_type => "withdrawal").sum(:budget_amount)

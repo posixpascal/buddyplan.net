@@ -1,0 +1,50 @@
+<%= content_for :title do %>Import Entry #<%= @contact_entry.id %><% end %>
+<%
+  fields = @fields
+%>
+<% if @actor %>
+  <%= form_tag import_contact_entry_movie_actors_path(@movie, @contact_entry) do %>
+
+    <input type="hidden" name="actor_id" value="<%= @actor.id %>">
+<div class="row">
+  <div class="col-sm-5">
+    <%= fields_for @contact_entry, fields %>
+  </div>
+  <div class="col-sm-2">
+    <% fields.each do |field| %>
+      <div class="import-toggle">
+        <input type="hidden" name="import_<%= field.to_s %>" value="1">
+        <%= image_tag "sync_arrow", height: 30 %>
+        <%= image_tag "no_import", height: 30, class: "d-none" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-5">
+    <div class="field">
+      <%= fields_for @actor, fields %>
+    </div>
+  </div>
+</div>
+    <button type="submit" class="btn btn-primary">Import fields</button>
+  <% end %>
+<% else %>
+  <div class="row">
+    <div class="col-sm-5">
+      <h2>Entry</h2>
+      <%= fields_for @contact_entry, fields %>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-5">
+      <div class="form-group">
+        <b>Select an author</b>
+        <form id="setAuthorForm" action="<%= new_import_entry_movie_actors_path %>">
+          <%= select_tag :actor_id, options_for_select(["---------------------------------------------"] + (@movie.actors.all.map { |u| [u.firstname + " " + u.lastname, u.id] })),
+                        { name: "actor_id", class: 'chosen-select', onchange: "window.setAuthorForm.submit()" }
+        %>
+        </form>
+      </div>
+    </div>
+  </div>
+<% end %>

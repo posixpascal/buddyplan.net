@@ -1,5 +1,6 @@
 class Movies::CastsController < ApplicationController
   before_action :set_movie
+  before_action :authenticate_user!
   def edit
   end
 

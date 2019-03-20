@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_101950) do
+ActiveRecord::Schema.define(version: 2019_03_20_172042) do
 
   create_table "action_events", force: :cascade do |t|
     t.integer "schedule_id"
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_101950) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "file_key"
     t.index ["movie_id"], name: "index_documents_on_movie_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
@@ -344,6 +346,13 @@ ActiveRecord::Schema.define(version: 2019_03_20_101950) do
     t.index ["scene_id"], name: "index_shoot_events_on_scene_id"
     t.index ["schedule_event_id"], name: "index_shoot_events_on_schedule_event_id"
     t.index ["schedule_id"], name: "index_shoot_events_on_schedule_id"
+  end
+
+  create_table "shortlinks", force: :cascade do |t|
+    t.string "key"
+    t.string "target"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "simulation_jobs", force: :cascade do |t|

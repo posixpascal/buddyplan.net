@@ -1,7 +1,7 @@
 class Movies::ActorsController < ApplicationController
   before_action :set_movie
   before_action :set_actor, only: [:destroy, :update, :edit, :show, :destroy]
-
+  before_action :authenticate_user!
   def edit
   end
 

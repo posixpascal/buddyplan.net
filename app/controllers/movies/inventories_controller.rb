@@ -1,7 +1,7 @@
 class Movies::InventoriesController < ApplicationController
   before_action :set_movie
   before_action :set_inventory, only: [:destroy, :update, :edit, :show, :destroy]
-
+  before_action :authenticate_user!
   def edit
   end
 

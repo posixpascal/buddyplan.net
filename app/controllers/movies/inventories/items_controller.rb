@@ -1,6 +1,7 @@
 class Movies::Inventories::ItemsController < ApplicationController
   before_action :set_movie
   before_action :set_inventory
+  before_action :authenticate_user!
   before_action :set_item, only: [:destroy, :edit, :update]
   def create
     @item = @inventory.items.create(item_params)

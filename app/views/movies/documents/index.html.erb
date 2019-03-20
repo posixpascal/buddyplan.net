@@ -6,4 +6,46 @@ end
   Documents
 <% end %>
 
-Documents are not supported at the time being.
+<p class="text-muted">View and manage documents for this project. You can upload multiple files at once.</p>
+<input type="file" name="file" class="filepond">
+
+<hr>
+
+<strong class="logo-text">Documents</strong>
+<% if @documents.count > 0 %>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| %>
+    <tr>
+      <td>
+        <%= document.id %>
+      </td>
+      <td>
+        <code><%= shorten_url "/movies/#{@movie.id}/documents/#{document.id}/download" %></code>
+      </td>
+      <td>
+        <%= link_to "View",  shorten_url("/movies/#{@movie.id}/documents/#{document.id}/download") %>
+      </td>
+      <td>
+        <%= link_to "Delete", movie_document_path(@movie, document), method: :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p class="text-muted">No documents found for this project.</p>
+<% end %>
+<script>
+    FilePond.parse(document.body);
+    FilePond.setOptions({
+        server: '<%= movie_documents_path(@movie) %>'
+    })
+</script>

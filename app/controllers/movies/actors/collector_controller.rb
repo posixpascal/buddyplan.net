@@ -1,4 +1,5 @@
 class Movies::Actors::CollectorController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_movie
   layout "public"
   def show

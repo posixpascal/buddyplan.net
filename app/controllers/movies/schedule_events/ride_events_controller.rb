@@ -1,5 +1,6 @@
 class Movies::ScheduleEvents::RideEventsController < ApplicationController
   before_action :set_movie
+  before_action :authenticate_user!
   before_action :set_schedule_event
   before_action :set_ride_event, only: [:edit, :update, :destroy]
   def create

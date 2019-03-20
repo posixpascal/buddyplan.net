@@ -14,5 +14,6 @@
  *= require chosen
  *= require app
  *= require pricing
+ *= require filepond
  *= require_self
  */

@@ -62,6 +62,14 @@ var init = function(){
         })
     });
 
+
+    $(".import-toggle").on("click", function(){
+        var $toggle = $(this);
+        $toggle.find("img").toggleClass("d-none");
+        $toggle.find("input").val($toggle.find("input").val() == "0" ? "1" : "0");
+    })
+
+
     flatpickr(".flatpicker", {});
     flatpickr(".flatpicker-time", { time_24hr: true, enableTime: true,});
     $('.chosen-select').chosen({
@@ -88,5 +96,4 @@ var init = function(){
     })*/
 };
 
-$(init)
 $(document).on('turbolinks:load', init);

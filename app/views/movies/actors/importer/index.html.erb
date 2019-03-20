@@ -14,9 +14,8 @@
     <% @contact_entries.each do |ce| %>
       <tr>
         <td><%= ce.firstname %> <%= ce.lastname %></td>
-        <td><%= link_to 'Import' %></td>
-        <td><%= link_to 'View'%></td>
-        <td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Import', new_import_entry_movie_actors_path(@movie, ce) %></td>
+        <td><%= link_to 'Destroy',delete_import_entry_movie_actors_path(@movie, ce), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </tbody>

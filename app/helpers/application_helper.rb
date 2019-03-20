@@ -4,6 +4,24 @@ module ApplicationHelper
     raw image_tag(icon_name, height: 25) + " " + label(label_tag, label_tag)
   end
 
+  def shorten_url url
+    len = 32
+    matchinng_shortlinks = Shortlink.where(target: url)
+    if matchinng_shortlinks.count > 0
+      key = matchinng_shortlinks.first.key
+      id = matchinng_shortlinks.first.id
+    else
+      key = SecureRandom.hex(len).to_s
+      while Shortlink.where(key: key).count > 0
+        key = SecureRandom.hex(len).to_s
+      end
+
+      id = Shortlink.create({key: key, target: url}).id
+    end
+
+    "https://bupl.net/r/#{id}/#{key}"
+  end
+
   def small_icon(icon_name, opts = {height: 20})
     raw image_tag(icon_name, opts)
   end

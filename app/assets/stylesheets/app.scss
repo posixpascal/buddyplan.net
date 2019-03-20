@@ -12,6 +12,16 @@ body {
   font-weight: bold;
 }
 
+.import-toggle {
+  min-height: 83px;
+  display: flex;
+  align-items: center;
+}
+.import-toggle, .field {
+  padding-bottom: 15px;
+  margin-bottom:15px;
+}
+
 .fake-checkbox {
   width: 32px;
   height: 32px;

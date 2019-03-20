@@ -1,7 +1,7 @@
 class Movies::Inventories::PrintController < ApplicationController
   before_action :set_movie
   before_action :set_inventory
-
+  before_action :authenticate_user!
   layout "pdf"
   def create
 
